@@ -20,7 +20,7 @@ cl <- codelist(objectcodes)
 dta <- data.frame(
   productid = 1:20,
   producttype = sample(cl$code, 20, replace = TRUE),
-  price = round(runif(20, 0, 100))
+  price = round(runif(20, 0, 100)),
   nsold = sample(1:1000, nrow(dta), replace = TRUE)
 )
 
