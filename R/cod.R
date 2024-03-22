@@ -20,16 +20,16 @@ cod <- function(x, codelist, locale = cllocale(codelist)) {
   }
   cl <- clfilterlocale(codelist, preferred = locale)
   m <- match(x, cl$label)
-  if (all(is.na(m)) && missing(locale)) {
+  if (all(is.na(m)) && missing(locale) && sum(!is.na(x))>0) {
     # Check other locales
     m2 <- match(x, codelist$label)
-    if (!anyNA(m2)) {
+    if (!any(is.na(m2) & !is.na(x))) {
       warning("Labels not found in current locale, but present in other locales. Ignoring locale.")
       m <- m2
       cl <- codelist
     }
   }
-  if (anyNA(m)) stop("Labels not present in codelist in current locale.")
+  if (any(is.na(m) & !is.na(x))) stop("Labels not present in codelist in current locale.")
   # Check for duplicate labels; then no unique code
   tmp <- cl$label[cl$label %in% x]
   tmp <- tmp[duplicated(tmp)]

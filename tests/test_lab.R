@@ -2,6 +2,9 @@
 library(codelist)
 source("helpers.R")
 
+# In case user has set this
+op <- options(CLLOCALE=NULL)
+
 data(objectcodes)
 codelist <- codelist(objectcodes)
 
@@ -104,4 +107,7 @@ x   <- factor(c("A", "X", "A01", NA))
 res <- lab(x, codelist = codelist)
 l   <- codelist$label[codelist$code != "X" & codelist$locale == "EN"]
 expect_equal(res, factor(c("Toys", NA, "Teddy Bear", NA), levels = l))
+
+# reset options
+options(op)
 
