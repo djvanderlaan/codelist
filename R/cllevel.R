@@ -1,4 +1,4 @@
-#' @export
+
 cllevel <- function(x, codelist) {
   if (!isTRUE(err <- checkwithcodelist(x, codelist, TRUE))) stop(err)
   codes <- codelist$code

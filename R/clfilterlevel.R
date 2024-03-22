@@ -7,7 +7,6 @@
 #' @return 
 #' Returns a \code{\link{codelist}}.
 #' 
-#' @export
 clfilterlevel <- function(codelist, level) {
   if (length(level) != 1) stop("level should be length 1")
   if (is.na(level)) return(codelist)

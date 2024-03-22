@@ -1,4 +1,3 @@
-#' @export
 clfilterlocale <- function(codelist, 
     preferred = getOption("CLLOCALE", NA_character_)) {
   locale <- cllocale(codelist, preferred)

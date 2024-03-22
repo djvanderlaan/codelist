@@ -11,7 +11,6 @@
 #' \code{TRUE}. Therefore, the result cannot directly be used in, for example,
 #' an \code{if} statement. Use \code{\link{isTRUE}}. 
 #'
-#' @export
 checkwithcodelist <- function(x, codelist, check_codelist = TRUE) {
   if (check_codelist) {
     if (!isTRUE(err <- isvalidcodelist(codelist))) return(err)

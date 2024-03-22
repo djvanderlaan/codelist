@@ -1,4 +1,5 @@
-#' @export
+
+
 cllocales <- function(codelist) {
   if (hasName(codelist, "locale")) {
     codelist$locale |> unique() |> removena()

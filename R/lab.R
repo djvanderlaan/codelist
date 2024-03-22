@@ -7,6 +7,7 @@
 #' @param missing convert codes that are missing value to missing values.
 #' @param locale use the codes from the given locale. Should be character vector 
 #'  of length 1.
+#' @param droplevels remove labels that do not occur in \code{x}.
 #'
 #' @details
 #' \code{labm} is a short hand for a call to \code{lab} with \code{missing =

@@ -1,3 +1,12 @@
+#' Check if the codelist is valid
+#'
+#' @param codelist a \code{\link{codelist}} object or a \code{data.frame} that
+#'   is a valid code list.
+#'
+#' @return
+#' Returns \code{TRUE} when the code list is valid; returns a character vector
+#' of length 1 with a description of the problem when it is not valid.
+#'
 #' @export
 isvalidcodelist <- function(codelist) {
   if (!is.data.frame(codelist)) return("Code list is not a data.frame")
@@ -34,3 +43,4 @@ isvalidcodelist <- function(codelist) {
   }
   TRUE
 }
+

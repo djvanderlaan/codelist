@@ -1,4 +1,4 @@
-#' @export
+
 cllevels <- function(codelist) {
   if (hasName(codelist, "level")) return(codelist$level)
   if (!hasName(codelist, "parent")) return(integer(nrow(codelist)))
