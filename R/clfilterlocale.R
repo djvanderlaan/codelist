@@ -4,7 +4,7 @@ clfilterlocale <- function(codelist,
   if (!missing(preferred) && locale != preferred) {
     warning("Preferred locale not found. Using default of '", locale, "'.")
   }
-  if (hasName(codelist, "locale")) {
+  if (utils::hasName(codelist, "locale")) {
     if (is.na(locale)) {
       codelist[is.na(codelist$locale), , drop = FALSE]
     } else {

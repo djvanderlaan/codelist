@@ -1,7 +1,7 @@
 
 cllevels <- function(codelist) {
-  if (hasName(codelist, "level")) return(codelist$level)
-  if (!hasName(codelist, "parent")) return(integer(nrow(codelist)))
+  if (utils::hasName(codelist, "level")) return(codelist$level)
+  if (!utils::hasName(codelist, "parent")) return(integer(nrow(codelist)))
   levels <- ifelse(is.na(codelist$parent), 0L, NA_integer_)
   if (all(is.na(levels))) 
     stop("There does not seem to be a toplevel code (with <NA> as parent)")

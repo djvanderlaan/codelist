@@ -11,8 +11,11 @@ Authors@R:
 Description: Functions for working with code lists. 
 Depends:
     R (>= 3.6.0)
+Imports:
+    utils,
+    methods
 Suggests:
-    simplermarkdown,
+    simplermarkdown
 VignetteBuilder: simplermarkdown
 License: GPL-3
 Encoding: UTF-8

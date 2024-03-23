@@ -30,20 +30,20 @@ codelist <- function(x, code = names(x)[1], label = names(x)[2],
   if (!is.data.frame(x)) stop("x should be a data.frame")
   if (!ncol(x) >= 1) stop("x should have at least 1 column")
   # Make sure the columns have the correct name
-  if (hasName(x, code)) 
+  if (utils::hasName(x, code)) 
     names(x)[names(x) == code] <- "code"
-  if (hasName(x, label)) {
+  if (utils::hasName(x, label)) {
     names(x)[names(x) == label] <- "label"
   } else {
     x$label <- as.character(x$code)
   }
-  if (hasName(x, description)) 
+  if (utils::hasName(x, description)) 
     names(x)[names(x) == description] <- "description"
-  if (hasName(x, parent)) 
+  if (utils::hasName(x, parent)) 
     names(x)[names(x) == parent] <- "parent"
-  if (hasName(x, locale)) 
+  if (utils::hasName(x, locale)) 
     names(x)[names(x) == locale] <- "locale"
-  if (hasName(x, missing)) {
+  if (utils::hasName(x, missing)) {
     names(x)[names(x) == missing] <- "missing"
     x$missing <- as.logical(x$missing)
   }

@@ -18,7 +18,7 @@ cllocale <- function(codelist,
   if (preferred %in% locales) {
     preferred
   } else {
-    head(locales, 1)
+    utils::head(locales, 1)
   }
 }
 

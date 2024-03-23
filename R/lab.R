@@ -35,7 +35,7 @@ lab <- function(x, codelist = attr(x, "codelist"), missing = TRUE,
       wrong <- c(utils::head(wrong, 5), "...")
     stop("Invalid values found in x: ", paste0(wrong, collapse = ","))
   }
-  if (missing && hasName(codelist, "missing")) {
+  if (missing && utils::hasName(codelist, "missing")) {
     m <- match(x, codes)
     x[codelist$missing[m]] <- NA
     codes  <- setdiff(codes, codelist$code[codelist$missing])
