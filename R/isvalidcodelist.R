@@ -21,9 +21,15 @@ isvalidcodelist <- function(codelist) {
   if (!is.character(codelist$label)) 
     return("Field 'label' is not of type character.")
   if (utils::hasName(codelist, "parent")) {
+    if (!sameclass(codelist$parent, codelist$code))
+      return ("Class of 'parent' column is not equal to that of the 'code' column")
     if (!all(is.na(codelist$parent) | (codelist$parent %in% codelist$code)))
       return ("Not all codes in 'parent' column are present in 'code' column.")
+    if (anyNA(cllevels(codelist))) 
+      return ("Codelist does not form a proper hierarchy.")
   }
+  if (anyNA(codelist$label)) 
+    return("Mising values in 'label' field.")
   if (utils::hasName(codelist, "description")) {
     if (!is.character(codelist$description)) 
       return("Field 'description' is not of type character.")
@@ -38,9 +44,17 @@ isvalidcodelist <- function(codelist) {
     if (!is.logical(codelist$missing) && !is.integer(codelist$missing) &&
       !(is.numeric(codelist$missing) && all(codelist$missing %in% c(0,1))))
       return("Field 'missing' cannot be interpreted as logical")
-    if (anyNA(codelist$locale)) 
+    if (anyNA(codelist$missing)) 
       return("Missing values in 'mising' field.")
   }
   TRUE
+}
+
+sameclass <- function(x, y) {
+  if (is.numeric(x) && is.numeric(y)) {
+    TRUE
+  } else {
+    isTRUE(all.equal(class(x), class(y)))
+  }
 }
 
