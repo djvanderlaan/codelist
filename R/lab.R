@@ -37,6 +37,7 @@ lab <- function(x, codelist = attr(x, "codelist"), missing = TRUE,
   }
   if (missing && utils::hasName(codelist, "missing")) {
     m <- match(x, codes)
+    codelist$missing <- as.logical(codelist$missing)
     x[codelist$missing[m]] <- NA
     codes  <- setdiff(codes, codelist$code[codelist$missing])
     labels <- setdiff(labels, codelist$label[codelist$missing])

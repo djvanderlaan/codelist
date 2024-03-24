@@ -114,6 +114,12 @@ res <- labm(x, codelist = codelist)
 res2 <- lab(x, codelist = codelist, missing = FALSE)
 expect_equal(res, res2)
 
+# Do not convert to codelist
+x   <- c("A", "X", "A01", NA)
+res <- lab(x, codelist = objectcodes)
+l   <- codelist$label[codelist$code != "X" & codelist$locale == "EN"]
+expect_equal(res, factor(c("Toys", NA, "Teddy Bear", NA), levels = l))
+
 
 # reset options
 options(op)
