@@ -50,11 +50,3 @@ isvalidcodelist <- function(codelist) {
   TRUE
 }
 
-sameclass <- function(x, y) {
-  if (is.numeric(x) && is.numeric(y)) {
-    TRUE
-  } else {
-    isTRUE(all.equal(class(x), class(y)))
-  }
-}
-

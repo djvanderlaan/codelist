@@ -6,6 +6,8 @@ coded <- function(x, codelist, ...) {
 
 #' @export
 coded.default <- function(x, codelist = attr(x, "codelist"), ...) {
+  if (!isTRUE(err <- checkwithcodelist(x, codelist)))
+    stop(err)
   attr(x, "codelist") <- codelist
   class(x) <- c("coded", attr(x, "class"))
   x
@@ -28,6 +30,8 @@ coded.factor <- function(x, codelist = attr(x, "codelist"), ...) {
   } else {
     stop("Codes in codelist should be either character or numeric.")
   }
+  if (!isTRUE(err <- checkwithcodelist(x, codelist)))
+    stop(err)
   attr(x, "levels") <- NULL
   attr(x, "codelist") <- codelist
   class(x) <- "coded"

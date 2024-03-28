@@ -16,6 +16,8 @@ checkwithcodelist <- function(x, codelist, check_codelist = TRUE) {
     if (!isTRUE(err <- isvalidcodelist(codelist))) return(err)
   }
   if (length(x) == 0 || all(is.na(x))) return(TRUE)
+  if (!sameclass(x, codelist$code)) 
+    stop("x does not have the same class as the codes in the codelist.")
   codes <- codelist$code
   ok <- x %in% codes | is.na(x)
   if (!all(ok)) {
