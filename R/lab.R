@@ -23,7 +23,7 @@ lab <- function(x, codelist = attr(x, "codelist"), missing = TRUE,
     locale = cllocale(codelist), droplevels = FALSE) {
   if (missing(codelist) && is.null(codelist)) 
     stop("x has no 'codelist' attribute. codelist has to be specified manually.")
-  stopifnot(iscodelist(codelist))
+  stopifnot(is.codelist(codelist))
   codelist <- clfilterlocale(codelist, preferred = locale)
   codes <- codelist$code
   labels <- codelist$label

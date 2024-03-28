@@ -8,7 +8,7 @@
 #' requirements of a code list.
 #'
 #' @export
-iscodelist <- function(x) {
+is.codelist <- function(x) {
   methods::is(x, "codelist") || isTRUE(isvalidcodelist(x))
 }
 
