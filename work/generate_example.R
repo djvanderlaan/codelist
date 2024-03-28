@@ -29,3 +29,8 @@ dta
 table(labm(dta$product, objectcodes), useNA = "ifany")
 
 subset(dta, product == cod("Electric Drill", objectcodes))
+
+objectsales <- dta
+
+save(objectsales, file = "data/objectsales.RData")
+
