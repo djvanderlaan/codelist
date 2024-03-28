@@ -41,6 +41,7 @@ coded <- function(x, codelist, ...) {
 
 #' @export
 coded.default <- function(x, codelist = attr(x, "codelist"), ...) {
+  if (!is.codelist(codelist)) codelist <- codelist(codelist)
   if (!isTRUE(err <- checkwithcodelist(x, codelist)))
     stop(err)
   attr(x, "codelist") <- codelist
@@ -54,16 +55,18 @@ coded.factor <- function(x, codelist = attr(x, "codelist"), ...) {
     codelist <- codelist(data.frame(code = seq_len(nlevels(x)), 
         label <- levels(x)))
     x <- as.integer(x)
-  }
-  if (is.factor(codelist$code)) {
-    codelist$code <- as.character(codelist$code)
-    x <- as.character(x)
-  } else if (is.character(codelist$code)) {
-    x <- as.character(x)
-  } else if (is.numeric(codelist$code)) {
-    x <- as.integer(x)
   } else {
-    stop("Codes in codelist should be either character or numeric.")
+    if (!is.codelist(codelist)) codelist <- codelist(codelist)
+    if (is.factor(codelist$code)) {
+      codelist$code <- as.character(codelist$code)
+      x <- as.character(x)
+    } else if (is.character(codelist$code)) {
+      x <- as.character(x)
+    #} else if (is.numeric(codelist$code)) {
+    #  x <- as.integer(x)
+    } else {
+      stop("Codes in codelist should be character when x is factor.")
+    }
   }
   if (!isTRUE(err <- checkwithcodelist(x, codelist)))
     stop(err)
