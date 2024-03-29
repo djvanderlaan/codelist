@@ -56,6 +56,9 @@ expect_equal(x, coded(c(4,3,NA), codelist))
 x <- coded(c(4,3,NA), codelist)
 x[integer(0)] <- integer(0)
 expect_equal(x, coded(c(4,3,NA), codelist))
+x <- coded(c(4,3,NA), codelist)
+x[1] <- NA
+expect_equal(x, coded(c(NA,3,NA), codelist))
 
 # Assignment logical indices; regular
 x <- coded(c(4,3,NA), codelist)
@@ -73,6 +76,9 @@ expect_equal(x, coded(c(4,3,NA), codelist))
 x <- coded(c(4,3,NA), codelist)
 x[FALSE] <- integer(0)
 expect_equal(x, coded(c(4,3,NA), codelist))
+x <- coded(c(4,3,NA), codelist)
+x[c(TRUE, FALSE, FALSE)] <- NA
+expect_equal(x, coded(c(NA,3,NA), codelist))
 
 # Invalid code
 x <- coded(c(4,3,NA), codelist)
@@ -113,6 +119,9 @@ x[3] <- factor("e")
 expect_equal(x, coded(c("d", "c","e"), codeliststr))
 expect_error(x[3] <- "f")
 expect_error(x[3] <- factor("f"))
+x <- coded(c("d", "c",NA), codeliststr)
+x[1] <- NA
+expect_equal(x, coded(c(NA, "c",NA), codeliststr))
 
 # factor codes
 codeliststr <- data.frame(

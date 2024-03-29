@@ -14,8 +14,10 @@
       stop("Codelist of value does not match that of the vector assigned to.")
   }
   codelist <- attr(x, "codelist")
-  if ((is.factor(value) || is.character(value)) && (is.character(codelist$code) || is.factor(codelist$code))) {
+  if (ischar(value) && ischar(codelist$code)) {
     value <- as.character(value)
+  } else if (all(is.na(value))) {
+    # Do nothing
   } else if (!sameclass(codelist$code, value)) {
     stop("value not of the same class as the used coded.")
   }
