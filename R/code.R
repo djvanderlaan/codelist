@@ -13,7 +13,7 @@
 #' be found in the codelist for the given locale.
 #'
 #' @export
-cod <- function(x, codelist, locale = cllocale(codelist)) {
+code <- function(x, codelist, locale = cllocale(codelist)) {
   if (!is.null(attr(codelist, "codelist"))) {
     # Assume we got a variable with a codelist and not the codelist
     codelist <- attr(codelist, "codelist")

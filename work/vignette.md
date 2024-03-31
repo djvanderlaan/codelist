@@ -38,15 +38,15 @@ objectsales$product |> head(10)
 
 One of the things we can do is convert the codes to their corresponding labels:
 ```{.R}
-lab(objectsales$product, objectcodes) |> head(10)
+label(objectsales$product, objectcodes) |> head(10)
 ```
-The `lab` function accepts a vector with codes and a `codelist` for this vector.
+The `label` function accepts a vector with codes and a `codelist` for this vector.
 It can get a bit tiresome to keep having to pass in the `codelist` attribute. If
 it is missing, the looks for a 'codelist' attribute:
 
 ```{.R}
 attr(objectsales$product, "codelist") <- objectcodes
-lab(objectsales$product) |> head(10)
+label(objectsales$product) |> head(10)
 ```
 The `codelist` package also has a `coded` type. Converting to a `coded` object
 adds the `coded` class. This will result in some formatting and later on we will
@@ -54,35 +54,35 @@ see that this also ensures that we cannot assign invalid codes to the vector:
 ```{.R}
 objectsales$product <- coded(objectsales$product, objectcodes)
 objectsales$product |> head(10)
-lab(objectsales$product) |> head(10)
+label(objectsales$product) |> head(10)
 ```
-The `lab` function can be used to get readable output from various R-functions:
+The `label` function can be used to get readable output from various R-functions:
 ```{.R}
-table(lab(objectsales$product), useNA = "ifany")
-tapply(objectsales$unitprice, lab(objectsales$product), mean)
-lm(unitprice ~ 0+lab(product), data = objectsales) 
+table(label(objectsales$product), useNA = "ifany")
+tapply(objectsales$unitprice, label(objectsales$product), mean)
+lm(unitprice ~ 0+label(product), data = objectsales) 
 ```
 By default codes that are considered missing are converted to `NA` when
 converting to labels. This can be prevented by setting the `missing` argument to
-`TRUE` or by using the `labm` function:
+`TRUE` or by using the `labelm` function:
 ```{.R}
-table(labm(objectsales$product), useNA = "ifany")
+table(labelm(objectsales$product), useNA = "ifany")
 ```
 The `droplevels` removes unused codes from the levels of the generated factor
 vector:
 ```{.R}
-table(labm(objectsales$product, droplevels = TRUE), useNA = "ifany")
+table(labelm(objectsales$product, droplevels = TRUE), useNA = "ifany")
 ```
 
 ### Locale
 
 ```{.R}
-lab(objectsales$product, locale = "NL") |> head()
+label(objectsales$product, locale = "NL") |> head()
 ```
 
 ```{.R}
 op <- options(CLLOCALE = "NL")
-tapply(objectsales$unitprice, lab(objectsales$product), mean)
+tapply(objectsales$unitprice, label(objectsales$product), mean)
 # Set the locale back to the original value (unset)
 options(op)
 ```
@@ -90,24 +90,24 @@ options(op)
 ### Looking up codes based on label
 
 ```{.R}
-cod("Hammer", objectcodes)
+code("Hammer", objectcodes)
 ```
 
 ```{.R}
-cod("Hammer", objectsales$product)
+code("Hammer", objectsales$product)
 ```
 
 ```{.R}
-subset(objectsales, product == cod("Electric Drill", product))
+subset(objectsales, product == code("Electric Drill", product))
 ```
 
 ```{.R}
-subset(objectsales, lab(product) == "Electric Drill")
-subset(objectsales, lab(product) == "Electric drll")
+subset(objectsales, label(product) == "Electric Drill")
+subset(objectsales, label(product) == "Electric drll")
 ```
 
 ```{.R}
-subset(objectsales, product == cod("Electric drill", product))
+subset(objectsales, product == code("Electric drill", product))
 ```
 
 ```{.R}
@@ -125,7 +125,7 @@ objectsales$product[10] <- "A01"
 ```
 
 ```{.R}
-objectsales$product[10] <- cod("Teddy Bear", objectcoces)
+objectsales$product[10] <- code("Teddy Bear", objectcoces)
 ```
 
 ```{.R}

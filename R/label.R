@@ -10,16 +10,16 @@
 #' @param droplevels remove labels that do not occur in \code{x}.
 #'
 #' @details
-#' \code{labm} is a short hand for a call to \code{lab} with \code{missing =
+#' \code{labelm} is a short hand for a call to \code{label} with \code{missing =
 #' FALSE}. It, therefore, keeps the codes that represent missing values as
 #' non-missing values.
 #'
 #' @return 
 #' A factor vector with the same length as \code{x}.
 #'
-#' @rdname lab
+#' @rdname label
 #' @export
-lab <- function(x, codelist = attr(x, "codelist"), missing = TRUE, 
+label <- function(x, codelist = attr(x, "codelist"), missing = TRUE, 
     locale = cllocale(codelist), droplevels = FALSE) {
   if (missing(codelist) && is.null(codelist)) 
     stop("x has no 'codelist' attribute. codelist has to be specified manually.")
@@ -46,10 +46,10 @@ lab <- function(x, codelist = attr(x, "codelist"), missing = TRUE,
   if (droplevels) droplevels(res) else res
 }
 
-#' @rdname lab
+#' @rdname label
 #' @export
-labm <- function(x, codelist = attr(x, "codelist"), missing = FALSE, 
+labelm <- function(x, codelist = attr(x, "codelist"), missing = FALSE, 
     locale = cllocale(codelist), droplevels = FALSE) {
-  lab(x, codelist, missing, locale, droplevels)
+  label(x, codelist, missing, locale, droplevels)
 }
 
