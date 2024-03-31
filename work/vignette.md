@@ -98,6 +98,10 @@ code("Hammer", objectsales$product)
 ```
 
 ```{.R}
+subset(objectsales, product == "B02")
+```
+
+```{.R}
 subset(objectsales, product == code("Electric Drill", product))
 ```
 
@@ -106,30 +110,34 @@ subset(objectsales, label(product) == "Electric Drill")
 subset(objectsales, label(product) == "Electric drll")
 ```
 
-```{.R}
-subset(objectsales, product == code("Electric drill", product))
+```{.R capture_warnings=TRUE}
+tryCatch({
+  subset(objectsales, product == code("Electric drill", product))
+}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
 ```
 
-```{.R}
-matchlab(objectsales$product, c("Hammer", "Electric Drill"))
-
+```{.R capture_warnings=TRUE}
 subset(objectsales, inlabels(product, "Electric Drill"))
-subset(objectsales, inlabels(product, "Electric drill"))
+tryCatch({
+  subset(objectsales, inlabels(product, "Electric drill"))
+}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
 ```
 
 ### Assignment of codes
 
 ```{.R}
-objectsales$product <- coded(objectsales$product, objectcodes)
 objectsales$product[10] <- "A01"
+objectsales$product[1:10] 
 ```
 
 ```{.R}
-objectsales$product[10] <- code("Teddy Bear", objectcoces)
+objectsales$product[10] <- code("Teddy Bear", objectcodes)
 ```
 
-```{.R}
-objectsales$product[10] <- "Q"
+```{.R capture_warnings=TRUE}
+tryCatch({
+  objectsales$product[10] <- "Q"
+}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
 ```
 
 ```{.R}
