@@ -10,7 +10,7 @@ document:
 	R -e "roxygen2::roxygenise()"
 
 vignettes: build
-	cd work && tar -xzf `ls codelist.tar.gz | sort | tail -n 1` && \
+	cd work && tar -xzf `ls codelist*.tar.gz | sort | tail -n 1` && \
 	  rm -r -f ../inst/doc && \
 	  mkdir -p ../inst && \
 	  cp -r codelist/inst/doc ../inst
