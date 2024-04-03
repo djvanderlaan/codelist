@@ -28,7 +28,7 @@
 #' x <- coded(c(1,4,2), codelist(data.frame(
 #'   codes = 1:4, labels = letters[1:4])))
 #' print(x)
-#' lab(x)
+#' label(x)
 #'
 #' x <- coded(factor(letters[1:3]))
 #' print(x)

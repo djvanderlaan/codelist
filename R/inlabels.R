@@ -2,7 +2,7 @@
 #' 
 #' @param x vector with codes. Should be of the same type as the codes in the
 #'   codelist.
-#' @param label vector with labels. 
+#' @param labels vector with labels. 
 #' @param codelist a \code{\link{codelist}} object or a \code{data.frame} that
 #'   is a valid code list or and object that has a 'codelist' attribute
 #'   containing a codelist.

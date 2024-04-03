@@ -21,8 +21,8 @@
 #'
 #' @export
 is.missing <- function(x, codelist = attr(x, "codelist")) {
-  if (is.data.frame(codelist) && hasName(codelist, "missing")) {
-    if (!hasName(codelist, "code")) 
+  if (is.data.frame(codelist) && utils::hasName(codelist, "missing")) {
+    if (!utils::hasName(codelist, "code")) 
       stop("Invalid codelist: 'code' column is missing.")
     missing_codes <- codelist$code[as.logical(codelist$missing)]
     is.na(x) | (x %in% missing_codes)
