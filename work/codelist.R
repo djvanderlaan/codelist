@@ -20,19 +20,6 @@ objectcodes <- codelist(objectcodes)
 data(objectsales)
 objectsales$product <- coded(objectsales$product, objectcodes)
 
-is.missing <- function(x, codelist = attr(x, "codelist")) {
-  if (is.data.frame(codelist) && hasName(codelist, "missing")) {
-    if (!hasName(codelist, "code")) 
-      stop("Invalid codelist: 'name' column is missing.")
-    missing_codes <- codelist$code[as.logical(codelist$missing)]
-    print(missing_codes)
-    is.na(x) | (x %in% missing_codes)
-  } else {
-    is.na(x)
-  }
-}
-
-is.missing(objectsales$product)
 
 objectsales[is.missing(objectsales$product), ]
 
