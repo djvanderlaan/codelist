@@ -24,7 +24,7 @@ objectsales$product <- coded(objectsales$product, objectcodes)
 objectsales[is.missing(objectsales$product), ]
 
 
-format.coded <- function(x, maxlen = getOption("clmaxlen", 10L), ...) {
+format.coded <- function(x, maxlen = getOption("CLMAXLEN", 0L), ...) {
   uncoded <- function(x) {
     class(x) <- setdiff(class(x), "coded")
     attr(x, "codelist") <- NULL
@@ -34,12 +34,12 @@ format.coded <- function(x, maxlen = getOption("clmaxlen", 10L), ...) {
     format(uncoded(x))
   } else {
     l <- as.character(labelm(x))
-    l <- ifelse(nchar(l) > maxlen, paste0(substr(l, 1, 5), "‥"), l)
-    l <- ifelse(is.na(x), "", paste0("(", l, ")"))
+    l <- ifelse(nchar(l) > maxlen, paste0(substr(l, 1L, maxlen-1L), "‥"), l)
+    l <- ifelse(is.na(x), "", paste0("[", l, "]"))
     paste0(format(uncoded(x)), format(l))
   }
 }
-format(objectsales$product, maxlen=0)
+format(objectsales$product, maxlen=5)
 
 objectsales
 
