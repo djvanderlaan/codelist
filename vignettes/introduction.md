@@ -93,12 +93,30 @@ table(labelm(objectsales$product, droplevels = TRUE), useNA = "ifany")
 
 ### Locale
 
+Using the 'locale' column of the code list it is possible to specify different
+versions of for the labels and descriptions. This can be used the specify
+different translations as in this example, but can also be used to specify
+different versions, for example, long and short labels. By default all methods
+will use the first locale in the code list as the defalult locale; the locale
+returned by the `cllocale` function:
+
+```{.R}
+cllocale(objectcodes)
+```
+Most methods also have a `locale` argument with which it is possible to specify
+the preferred locale (the default is used when the preferred locale is not
+present). For example:
+
 ```{.R}
 label(objectsales$product, locale = "NL") |> head()
 ```
+It can become tedious having to specify the locale for each function call. The
+`cllocale` will look at the `CLLOCALE` option, when present, to get the
+preferred locale. Therefore, to set a default preferred locale:
 
 ```{.R}
 op <- options(CLLOCALE = "NL")
+cllocale(objectcodes)
 tapply(objectsales$unitprice, label(objectsales$product), mean)
 # Set the locale back to the original value (unset)
 options(op)
@@ -163,13 +181,13 @@ course also work within `data.tables` and the `filter` methods from `dplyr`.
 
 ### Assignment of codes
 
-When the vector with codes is transformed to a `coded` object. It can of course
+When the vector with codes is transformed to a `coded` object, it can of course
 also be assigned to:
 ```{.R}
 objectsales$product[10] <- "A01"
 objectsales$product[1:10] 
 ```
-Here the `coded` function can also be of use (again, an invalid label will
+Here the `code` function can also be of use (again, an invalid label will
 result in an error so this is a safe operation):
 ```{.R}
 objectsales$product[10] <- code("Teddy Bear", objectcodes)
@@ -179,6 +197,7 @@ Using a `coded` vector also has the advantage that the codes assigned to will be
 validated against the code list, generating an error when one tries assign an
 invalid code:
 ```{.R capture_warnings=TRUE}
+# Wrap in a tryCatch to not throw actual errors
 tryCatch({
   objectsales$product[10] <- "Q"
 }, error = \(e) cat("Error:", conditionMessage(e), "\n"))
