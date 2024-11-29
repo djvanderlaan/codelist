@@ -93,12 +93,30 @@ table(labelm(objectsales$product, droplevels = TRUE), useNA = "ifany")
 
 ### Locale
 
+Using the 'locale' column of the code list it is possible to specify different
+versions of for the labels and descriptions. This can be used the specify
+different translations as in this example, but can also be used to specify
+different versions, for example, long and short labels. By default all methods
+will use the first locale in the code list as the defalult locale; the locale
+returned by the `cllocale` function:
+
+```{.R}
+cllocale(objectcodes)
+```
+Most methods also have a `locale` argument with which it is possible to specify
+the preferred locale (the default is used when the preferred locale is not
+present). For example:
+
 ```{.R}
 label(objectsales$product, locale = "NL") |> head()
 ```
+It can become tedious having to specify the locale for each function call. The
+`cllocale` will look at the `CLLOCALE` option, when present, to get the
+preferred locale. Therefore, to set a default preferred locale:
 
 ```{.R}
 op <- options(CLLOCALE = "NL")
+cllocale(objectcodes)
 tapply(objectsales$unitprice, label(objectsales$product), mean)
 # Set the locale back to the original value (unset)
 options(op)
@@ -128,7 +146,15 @@ In general the latter is more readable and makes the intent of the code much
 more clear (unless one can assume that the people reading the code will now most
 of the product codes).
 
-Selecting this was has an advantage over selecting records based on character
+When comparing a `coded` object to labels, it is also possible to use the `lab`
+function. This will add the class "label" to the character vector. The
+comparison operator will then first call the `code` function on the label:
+```{.R}
+subset(objectsales, product == lab("Electric Drill"))
+```
+This only works for the equal-to and not-equal-to operators.
+
+Selecting this way has an advantage over selecting records based on character
 vectors or factor vectors. For example we could also have done the following:
 ```{.R}
 subset(objectsales, label(product) == "Electric Drill")
@@ -163,13 +189,13 @@ course also work within `data.tables` and the `filter` methods from `dplyr`.
 
 ### Assignment of codes
 
-When the vector with codes is transformed to a `coded` object. It can of course
+When the vector with codes is transformed to a `coded` object, it can of course
 also be assigned to:
 ```{.R}
 objectsales$product[10] <- "A01"
 objectsales$product[1:10] 
 ```
-Here the `coded` function can also be of use (again, an invalid label will
+Here the `code` function can also be of use (again, an invalid label will
 result in an error so this is a safe operation):
 ```{.R}
 objectsales$product[10] <- code("Teddy Bear", objectcodes)
@@ -179,6 +205,7 @@ Using a `coded` vector also has the advantage that the codes assigned to will be
 validated against the code list, generating an error when one tries assign an
 invalid code:
 ```{.R capture_warnings=TRUE}
+# Wrap in a tryCatch to not throw actual errors
 tryCatch({
   objectsales$product[10] <- "Q"
 }, error = \(e) cat("Error:", conditionMessage(e), "\n"))
@@ -190,5 +217,35 @@ invalid factor levels).
 Assigning `NA` will of course still work:
 ```{.R}
 objectsales$product[10] <- NA
+```
+
+### Comparison to factor
+
+One of the advantaged of the `coded` object is that this object is safer to work
+with than a vector.
+
+```{.R}
+x <- factor(letters[1:3])
+y <- coded(1:3, data.frame(code = 1:3, label = letters[1:3]))
+```
+Comparing on invalid codes works with a factor while it will generate an error
+for `coded` objects:
+```{.R}
+try({ x == 4 })
+try({ y == 4 })
+```
+The same holds when comparing on labels:
+```{.R}
+try({ x == "foobar" })
+```
+A `coded` cannot directly be compared on a label and will generate an error even
+when the label is valid:
+```{.R}
+try({ y == "a" })
+```
+One should use either the `code` or `lab` function for that:
+```{.R}
+try({ y == lab("a") })
+try({ y == lab("foobar") })
 ```
 

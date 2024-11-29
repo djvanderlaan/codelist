@@ -13,6 +13,15 @@
 #' A logical vector of the same length as \code{x} indicating for each value if
 #' the code has a label present in \code{labels}.
 #'
+#' @examples
+#' data(objectcodes)
+#' data(objectsales)
+#' objectsales$product <- coded(objectsales$product, objectcodes)
+#'
+#' inlabels(objectsales$product, c("Electric Drill", "Toys"))
+#'
+#' subset(objectsales, inlabels(product, c("Electric Drill", "Hammer")))
+#'
 #' @export
 inlabels <- function(x, labels, codelist = attr(x, "codelist"), 
     locale = cllocale(codelist)) {

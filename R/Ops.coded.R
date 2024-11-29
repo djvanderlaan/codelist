@@ -11,7 +11,9 @@ Ops.coded <- function(e1, e2) {
       stop("Codelist of rhs does not match that of the lhs.")
   }
   codelist <- attr(e1, "codelist")
-  if (ischar(e2) && ischar(codelist$code)) {
+  if (methods::is(e2, "label")) {
+    e2 <- code(e2, e1)
+  } else if (ischar(e2) && ischar(codelist$code)) {
     e2 <- as.character(e2)
   } else if (all(is.na(e2))) {
     # Do nothing

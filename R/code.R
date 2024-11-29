@@ -12,6 +12,16 @@
 #' Returns a vector of codes. Will give an error when one of the labels cannot
 #' be found in the codelist for the given locale.
 #'
+#' @seealso
+#' See \code{\link{lab}} for an alternative in comparisons.
+#'
+#' @examples
+#' data(objectcodes)
+#' data(objectsales)
+#' objectsales$product <- coded(objectsales$product, objectcodes)
+#'
+#' code(c("Hammer", "Electric Drill"), objectsales$product)
+#'
 #' @export
 code <- function(x, codelist, locale = cllocale(codelist)) {
   if (!is.null(attr(codelist, "codelist"))) {

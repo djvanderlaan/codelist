@@ -75,3 +75,22 @@ clcast <- function(x, codelist, level, locale = cllocale(codelist)) {
 
 clcast(dta$object, cl, 0)
 
+
+
+
+data(objectcodes)
+data(objectsales)
+objectsales$product <- coded(objectsales$product, objectcodes)
+
+objectsales$product == lab("Hammer")
+
+subset(objectsales, product == lab("Hammer"))
+
+subset(objectsales, product == code("Hammer", product))
+
+
+as.factor.coded <- function(x) {
+  lab
+}
+
+

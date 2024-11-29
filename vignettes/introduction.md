@@ -146,7 +146,15 @@ In general the latter is more readable and makes the intent of the code much
 more clear (unless one can assume that the people reading the code will now most
 of the product codes).
 
-Selecting this was has an advantage over selecting records based on character
+When comparing a `coded` object to labels, it is also possible to use the `lab`
+function. This will add the class "label" to the character vector. The
+comparison operator will then first call the `code` function on the label:
+```{.R}
+subset(objectsales, product == lab("Electric Drill"))
+```
+This only works for the equal-to and not-equal-to operators.
+
+Selecting this way has an advantage over selecting records based on character
 vectors or factor vectors. For example we could also have done the following:
 ```{.R}
 subset(objectsales, label(product) == "Electric Drill")
@@ -209,5 +217,35 @@ invalid factor levels).
 Assigning `NA` will of course still work:
 ```{.R}
 objectsales$product[10] <- NA
+```
+
+### Safety
+
+One of the advantaged of the `coded` object is that this object is safer to work
+with than a vector.
+
+```{.R}
+x <- factor(letters[1:3])
+y <- coded(1:3, data.frame(code = 1:3, label = letters[1:3]))
+```
+Comparing on invalid codes works with a factor while it will generate an error
+for `coded` objects:
+```{.R}
+try({ x == 4 })
+try({ y == 4 })
+```
+The same holds when comparing on labels:
+```{.R}
+try({ x == "foobar" })
+```
+A `coded` cannot directly be compared on a label and will generate an error even
+when the label is valid:
+```{.R}
+try({ y == "a" })
+```
+One should use either the `code` or `lab` function for that:
+```{.R}
+try({ y == lab("a") })
+try({ y == lab("foobar") })
 ```
 
