@@ -9,6 +9,9 @@ author: Jan van der Laan
 css: "style.css"
 ---
 
+```{.R results=FALSE echo=FALSE}
+try <- function(...) base::try(..., outFile = stdout() )
+```
 
 The `codelist` package has an example code list and a data set that used codes
 from that code list. We will start by demonstrating how the package works using
@@ -165,12 +168,12 @@ subset(objectsales, label(product) == "Electric drll")
 ```
 And we could have believed that no electric drills were sold. The `code`
 function will also check if the provided labels are valid and if not will
-generate an error (the `tryCatch` is to make sure don't actually throw an
+generate an error (the `try` is to make sure don't actually throw an
 error). 
 ```{.R capture_warnings=TRUE}
-tryCatch({
+try({
   subset(objectsales, product == code("Electric drill", product))
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 ```
 Since selecting on labels is a common operation, there is also the `inlabels`
 function that will return a logical vector indicating whether or not a code has
@@ -180,9 +183,9 @@ subset(objectsales, inlabels(product, "Electric Drill"))
 ```
 This function will of course also generate an error in case of invalid codes.
 ```{.R capture_warnings=TRUE}
-tryCatch({
+try({
   subset(objectsales, inlabels(product, "Electric drill"))
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 ```
 In the examples above we used the base function `subset`, but this will of
 course also work within `data.tables` and the `filter` methods from `dplyr`. 
@@ -205,10 +208,9 @@ Using a `coded` vector also has the advantage that the codes assigned to will be
 validated against the code list, generating an error when one tries assign an
 invalid code:
 ```{.R capture_warnings=TRUE}
-# Wrap in a tryCatch to not throw actual errors
-tryCatch({
+try({
   objectsales$product[10] <- "Q"
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 ```
 This makes a `coded` object safer to work with than, for example, a character of
 numeric vector with codes (a `factor` vector will also generate a warning for

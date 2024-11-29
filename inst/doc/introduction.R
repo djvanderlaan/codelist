@@ -1,4 +1,7 @@
 # <unlabeled code block>
+try <- function(...) base::try(..., outFile = stdout() )
+
+# <unlabeled code block>
 library(codelist)
 
 data(objectcodes)
@@ -69,17 +72,17 @@ subset(objectsales, label(product) == "Electric Drill")
 subset(objectsales, label(product) == "Electric drll")
 
 # <unlabeled code block>
-tryCatch({
+try({
   subset(objectsales, product == code("Electric drill", product))
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 
 # <unlabeled code block>
 subset(objectsales, inlabels(product, "Electric Drill"))
 
 # <unlabeled code block>
-tryCatch({
+try({
   subset(objectsales, inlabels(product, "Electric drill"))
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 
 # <unlabeled code block>
 objectsales$product[10] <- "A01"
@@ -90,10 +93,9 @@ objectsales$product[10] <- code("Teddy Bear", objectcodes)
 objectsales$product[1:10] 
 
 # <unlabeled code block>
-# Wrap in a tryCatch to not throw actual errors
-tryCatch({
+try({
   objectsales$product[10] <- "Q"
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 
 # <unlabeled code block>
 objectsales$product[10] <- NA
