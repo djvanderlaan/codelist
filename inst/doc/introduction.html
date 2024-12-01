@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -387,43 +387,57 @@ invalid label will result in an error so this is a safe operation):</p>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
+<p>Another option is to use the <code>lab</code> function which labels a
+character vector as a label:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">lab</span>(<span class="st">&quot;Electric Drill&quot;</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 B02</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
+<h3 id="safety">Safety</h3>
 <p>Using a <code>coded</code> vector also has the advantage that the
 codes assigned to will be validated against the code list, generating an
 error when one tries assign an invalid code:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Q&quot;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">[&lt;-.coded</span><span class="st">`</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="dv">10</span>, <span class="at">value =</span> <span class="st">&quot;Q&quot;</span>) <span class="sc">:</span> </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  Invalid codes used <span class="cf">in</span> value.</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Q&quot;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">[&lt;-.coded</span><span class="st">`</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="dv">10</span>, <span class="at">value =</span> <span class="st">&quot;Q&quot;</span>) <span class="sc">:</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  Invalid codes used <span class="cf">in</span> value.</span></code></pre></div>
 <p>This makes a <code>coded</code> object safer to work with than, for
 example, a character of numeric vector with codes (a <code>factor</code>
 vector will also generate a warning for invalid factor levels).</p>
+<p>The <code>code</code> function and the <code>lab</code> function
+(which call the <code>code</code> function) will also generate an
+error:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">lab</span>(<span class="st">&quot;Teddy bear&quot;</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(value, codelist) <span class="sc">:</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
 <p>Assigning <code>NA</code> will of course still work:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
-<h3 id="safety">Safety</h3>
-<p>One of the advantaged of the <code>coded</code> object is that this
-object is safer to work with than a vector.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">factor</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">coded</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">data.frame</span>(<span class="at">code =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">label =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<p>A <code>coded</code> object is safer to work with than a factor
+vector. For example:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">factor</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">coded</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">data.frame</span>(<span class="at">code =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">label =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
 <p>Comparing on invalid codes works with a factor while it will generate
 an error for <code>coded</code> objects:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="dv">4</span> })</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="dv">4</span> })</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="dv">4</span>) <span class="sc">:</span> Invalid codes used <span class="cf">in</span> RHS</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="dv">4</span> })</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="dv">4</span> })</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="dv">4</span>) <span class="sc">:</span> Invalid codes used <span class="cf">in</span> RHS</span></code></pre></div>
 <p>The same holds when comparing on labels:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="st">&quot;foobar&quot;</span> })</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="st">&quot;foobar&quot;</span> })</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
 <p>A <code>coded</code> cannot directly be compared on a label and will
 generate an error even when the label is valid:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="st">&quot;a&quot;</span> })</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="st">&quot;a&quot;</span>) <span class="sc">:</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  RHS not of the same class as the used codes of the LHS.</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="st">&quot;a&quot;</span> })</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="st">&quot;a&quot;</span>) <span class="sc">:</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  RHS not of the same class as the used codes of the LHS.</span></code></pre></div>
 <p>One should use either the <code>code</code> or <code>lab</code>
 function for that:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;a&quot;</span>) })</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;foobar&quot;</span>) })</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(e2, e1) <span class="sc">:</span> Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;a&quot;</span>) })</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;foobar&quot;</span>) })</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(e2, e1) <span class="sc">:</span> Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
 </body>
 </html>

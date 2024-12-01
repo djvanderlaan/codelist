@@ -155,3 +155,4 @@ expect_error(x[3] <- "f")
 expect_error(x[3] <- factor("f"))
 expect_error(x[3] <- factor("f"))
 
+
