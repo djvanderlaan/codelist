@@ -14,7 +14,9 @@
       stop("Codelist of value does not match that of the vector assigned to.")
   }
   codelist <- attr(x, "codelist")
-  if (ischar(value) && ischar(codelist$code)) {
+  if (methods::is(value, "label")) {
+    value <- code(value, codelist)
+  } else if (ischar(value) && ischar(codelist$code)) {
     value <- as.character(value)
   } else if (all(is.na(value))) {
     # Do nothing
@@ -46,7 +48,9 @@
       stop("Codelist of value does not match that of the vector assigned to.")
   }
   codelist <- attr(x, "codelist")
-  if (ischar(value) && ischar(codelist$code)) {
+  if (methods::is(value, "label")) {
+    value <- code(value, codelist)
+  } else if (ischar(value) && ischar(codelist$code)) {
     value <- as.character(value)
   } else if (all(is.na(value))) {
     # Do nothing

@@ -201,28 +201,40 @@ result in an error so this is a safe operation):
 objectsales$product[10] <- code("Teddy Bear", objectcodes)
 objectsales$product[1:10] 
 ```
+Another option is to use the `lab` function which labels a character vector as a
+label:
+```{.R}
+objectsales$product[10] <- lab("Electric Drill")
+objectsales$product[1:10] 
+```
+
+### Safety
+
 Using a `coded` vector also has the advantage that the codes assigned to will be
 validated against the code list, generating an error when one tries assign an
 invalid code:
 ```{.R capture_warnings=TRUE}
-# Wrap in a tryCatch to not throw actual errors
-tryCatch({
+try({
   objectsales$product[10] <- "Q"
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
 ```
 This makes a `coded` object safer to work with than, for example, a character of
 numeric vector with codes (a `factor` vector will also generate a warning for
 invalid factor levels).
 
+The `code` function and the `lab` function (which call the `code` function) will
+also generate an error:
+```{.R capture_warnings=TRUE}
+try({
+  objectsales$product[10] <- lab("Teddy bear")
+})
+```
 Assigning `NA` will of course still work:
 ```{.R}
 objectsales$product[10] <- NA
 ```
 
-### Safety
-
-One of the advantaged of the `coded` object is that this object is safer to work
-with than a vector.
+A `coded` object is safer to work with than a factor vector. For example:
 
 ```{.R}
 x <- factor(letters[1:3])

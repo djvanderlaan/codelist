@@ -90,10 +90,18 @@ objectsales$product[10] <- code("Teddy Bear", objectcodes)
 objectsales$product[1:10] 
 
 # <unlabeled code block>
-# Wrap in a tryCatch to not throw actual errors
-tryCatch({
+objectsales$product[10] <- lab("Electric Drill")
+objectsales$product[1:10] 
+
+# <unlabeled code block>
+try({
   objectsales$product[10] <- "Q"
-}, error = \(e) cat("Error:", conditionMessage(e), "\n"))
+})
+
+# <unlabeled code block>
+try({
+  objectsales$product[10] <- lab("Teddy bear")
+})
 
 # <unlabeled code block>
 objectsales$product[10] <- NA
