@@ -58,15 +58,15 @@ objectsales$product |> head(10)
 
 One of the things we can do is convert the codes to their corresponding labels:
 ```{.R}
-label(objectsales$product, objectcodes) |> head(10)
+tolabels(objectsales$product, objectcodes) |> head(10)
 ```
-The `label` function accepts a vector with codes and a `codelist` for this vector.
+The `tolabels` function accepts a vector with codes and a `codelist` for this vector.
 It can get a bit tiresome to keep having to pass in the `codelist` attribute. If
 it is missing, the looks for a 'codelist' attribute:
 
 ```{.R}
 attr(objectsales$product, "codelist") <- objectcodes
-label(objectsales$product) |> head(10)
+tolabels(objectsales$product) |> head(10)
 ```
 The `codelist` package also has a `coded` type. Converting to a `coded` object
 adds the `coded` class. This will result in some formatting and later on we will
@@ -74,24 +74,29 @@ see that this also ensures that we cannot assign invalid codes to the vector:
 ```{.R}
 objectsales$product <- coded(objectsales$product, objectcodes)
 objectsales$product |> head(10)
-label(objectsales$product) |> head(10)
+tolabels(objectsales$product) |> head(10)
 ```
-The `label` function can be used to get readable output from various R-functions:
+For `coded` objects there is also the `labels` method:
+```
+labels(objectsales$product) |> head(10)
+```
+The `labels` method and the `tolabels` function can be used to get readable
+output from various R-functions:
 ```{.R}
-table(label(objectsales$product), useNA = "ifany")
-tapply(objectsales$unitprice, label(objectsales$product), mean)
-lm(unitprice ~ 0+label(product), data = objectsales) 
+table(labels(objectsales$product), useNA = "ifany")
+tapply(objectsales$unitprice, labels(objectsales$product), mean)
+lm(unitprice ~ 0+labels(product), data = objectsales) 
 ```
 By default codes that are considered missing are converted to `NA` when
 converting to labels. This can be prevented by setting the `missing` argument to
-`TRUE` or by using the `labelm` function:
+`FALSE`:
 ```{.R}
-table(labelm(objectsales$product), useNA = "ifany")
+table(labels(objectsales$product, FALSE), useNA = "ifany")
 ```
 The `droplevels` removes unused codes from the levels of the generated factor
 vector:
 ```{.R}
-table(labelm(objectsales$product, droplevels = TRUE), useNA = "ifany")
+table(labels(objectsales$product, droplevels = TRUE), useNA = "ifany")
 ```
 
 ### Locale
@@ -111,7 +116,7 @@ the preferred locale (the default is used when the preferred locale is not
 present). For example:
 
 ```{.R}
-label(objectsales$product, locale = "NL") |> head()
+labels(objectsales$product, locale = "NL") |> head()
 ```
 It can become tedious having to specify the locale for each function call. The
 `cllocale` will look at the `CLLOCALE` option, when present, to get the
@@ -120,7 +125,7 @@ preferred locale. Therefore, to set a default preferred locale:
 ```{.R}
 op <- options(CLLOCALE = "NL")
 cllocale(objectcodes)
-tapply(objectsales$unitprice, label(objectsales$product), mean)
+tapply(objectsales$unitprice, labels(objectsales$product), mean)
 # Set the locale back to the original value (unset)
 options(op)
 ```
@@ -160,11 +165,11 @@ This only works for the equal-to and not-equal-to operators.
 Selecting this way has an advantage over selecting records based on character
 vectors or factor vectors. For example we could also have done the following:
 ```{.R}
-subset(objectsales, label(product) == "Electric Drill")
+subset(objectsales, labels(product) == "Electric Drill")
 ```
 However, a small, difficult to spot, spelling mistake would have resulted in:
 ```{.R}
-subset(objectsales, label(product) == "Electric drll")
+subset(objectsales, labels(product) == "Electric drll")
 ```
 And we could have believed that no electric drills were sold. The `code`
 function will also check if the provided labels are valid and if not will

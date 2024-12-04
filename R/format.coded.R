@@ -22,7 +22,7 @@ format.coded <- function(x, maxlen = getOption("CLMAXLEN", 8L), ...) {
   if (maxlen <= 0 || is.na(maxlen) || is.null(maxlen)) {
     format(uncoded(x))
   } else {
-    l <- as.character(labelm(x))
+    l <- as.character(tolabels(x, missing = FALSE))
     l <- ifelse(nchar(l) > maxlen, paste0(substr(l, 1L, maxlen-1L), "\u2026"), l)
     l <- ifelse(is.na(x), "", paste0("[", l, "]"))
     paste0(format(uncoded(x)), format(l))
