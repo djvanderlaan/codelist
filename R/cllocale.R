@@ -1,5 +1,3 @@
-
-
 #' Get the locale to use with the codelist
 #'
 #' @param codelist a \code{\link{codelist}} object or a \code{data.frame} that
