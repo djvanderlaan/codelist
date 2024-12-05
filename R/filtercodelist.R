@@ -1,0 +1,38 @@
+
+#' Filter a code list
+#'
+#' @param codelist a \code{\link{codelist}} object.
+#'
+#' @param locale use the codes from the given locale. Should be character
+#' vector of length 1. When NA the default locale is used (as returned by
+#' \code{\link{cllocale}}.
+#'
+#' @param levels vector with levels on which to filter an hierarchical code list.
+#' Levels are numbered from 0 with 0 the topmost level. See 'Details'. When a
+#' code list does not have a 'parent' column and is, therefore, not hierarchical
+#' all codes are in level 0.
+#'
+#' @param check_levels if TRUE the parent column (if present) is removed from
+#' the result when the resulting code list would not be a valid hierarchy.
+#'
+#' @details
+#' When a code list has a 'parent' column. The codes without parent are assigned
+#' level 0. Codes with a parent in level 0 are assigned to level 1. Etc. When
+#' the code list does not have a 'parent' column all codes are assigned to level
+#' 0 (all codes are in the top level).
+#'
+#' @return 
+#' Returns a \code{\link{codelist}} with the selected encoding and/or levels.
+#'
+#' @export
+filtercodelist <- function(codelist, locale, levels, check_levels = TRUE) {
+  if (!missing(locale)) {
+    if (is.na(locale)) locale <- cllocale(codelist)
+    codelist <- clfilterlocale(codelist, locale)
+  }
+  if (!missing(levels)) {
+    codelist <- clfilterlevel(codelist, levels, check_levels)
+  }
+  codelist
+}
+
