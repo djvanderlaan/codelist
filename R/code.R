@@ -1,4 +1,3 @@
-
 #' Get the code belonging to a given label
 #' 
 #' @param x character vector with labels.
@@ -28,7 +27,7 @@ code <- function(x, codelist, locale = cllocale(codelist)) {
     # Assume we got a variable with a codelist and not the codelist
     codelist <- attr(codelist, "codelist")
   }
-  cl <- clfilterlocale(codelist, preferred = locale)
+  cl <- filtercodelist(codelist, locale = locale)
   m <- match(x, cl$label)
   if (all(is.na(m)) && missing(locale) && sum(!is.na(x))>0) {
     # Check other locales
