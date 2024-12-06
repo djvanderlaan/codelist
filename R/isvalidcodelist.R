@@ -39,6 +39,19 @@ isvalidcodelist <- function(codelist) {
       return("Field 'locale' is not of type character.")
     if (anyNA(codelist$locale)) 
       return("Missing values in 'locale' field.")
+    locales <- unique(codelist$locale)
+    codes <- unique(codelist$code)
+    for (locale in locales) {
+      sel <- codelist$locale == locale
+      if (!all(codes %in% codelist$code[sel])) {
+        return(paste0("Locale '", locale, "' does not contain all codes."))
+      }
+      if (anyDuplicated(codelist$code[sel])) {
+        return(paste0("Locale '", locale, "' contains duplicated codes."))
+      }
+    }
+  } else {
+    if (anyDuplicated(codelist$code)) return("Duplicated codes.")
   }
   if (utils::hasName(codelist, "missing")) {
     if (!is.logical(codelist$missing) && !is.integer(codelist$missing) &&

@@ -243,3 +243,34 @@ x <- data.frame(
 res <- codelist(x)
 expect_equal(res$parent, as.integer(c(NA, NA, NA)))
 
+# Missing codes in locales
+cl <- data.frame(
+  code = c("a", "b", "a"),
+  label = c("A", "B", "a"),
+  locale = c("UPPER", "UPPER", "lower")
+  )
+expect_error(res <- codelist(cl))
+
+# No missing codes in locale
+cl <- data.frame(
+  code = c("a", "b", "a", "b"),
+  label = c("A", "B", "a", "b"),
+  locale = c("UPPER", "UPPER", "lower", "lower")
+  )
+res <- codelist(cl) # we expect no error
+expect_equal(as.data.frame(res), cl, attributes = FALSE)
+
+# Duplicated codes in locale
+cl <- data.frame(
+  code = c("a", "b", "a", "b", "a"),
+  label = c("A", "B", "a", "b", "a"),
+  locale = c("UPPER", "UPPER", "lower", "lower", "lower")
+  )
+expect_error(res <- codelist(cl))
+
+# Duplicated codes 
+cl <- data.frame(
+  code = c("a", "b", "a"),
+  label = c("A", "B", "a")
+  )
+expect_error(res <- codelist(cl))
