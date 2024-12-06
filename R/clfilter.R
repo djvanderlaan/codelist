@@ -24,19 +24,19 @@
 #' Returns a \code{\link{codelist}} with the selected encoding and/or levels.
 #'
 #' @export
-filtercodelist <- function(codelist, locale, levels, check_levels = TRUE) {
+clfilter <- function(codelist, locale, levels, check_levels = TRUE) {
   if (!missing(locale)) {
     if (is.na(locale)) locale <- cllocale(codelist)
-    codelist <- clfilterlocale(codelist, locale)
+    codelist <- clfilter_by_locale(codelist, locale)
   }
   if (!missing(levels)) {
-    codelist <- clfilterlevel(codelist, levels, check_levels)
+    codelist <- clfilter_by_level(codelist, levels, check_levels)
   }
   codelist
 }
 
 
-clfilterlocale <- function(codelist, 
+clfilter_by_locale <- function(codelist, 
     preferred = getOption("CLLOCALE", NA_character_)) {
   locale <- cllocale(codelist, preferred)
   if (!(missing(preferred) || is.na(preferred)) && locale != preferred) {
@@ -53,7 +53,7 @@ clfilterlocale <- function(codelist,
   }
 }
 
-clfilterlevel <- function(codelist, level, check_levels = TRUE) {
+clfilter_by_level <- function(codelist, level, check_levels = TRUE) {
   stopifnot(is.numeric(level))
   if (length(level) < 1) stop("level should be are least of length 1")
   if (any(is.na(level))) stop("Missing values in level.")

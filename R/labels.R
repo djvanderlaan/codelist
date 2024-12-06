@@ -49,7 +49,7 @@ labels.coded <- function(object, missing = TRUE, droplevels = FALSE,
   if (missing(codelist) && is.null(codelist)) 
     stop("object has no 'codelist' attribute. codelist has to be specified manually.")
   stopifnot(is.codelist(codelist))
-  codelist <- filtercodelist(codelist, locale = locale)
+  codelist <- clfilter(codelist, locale = locale)
   codes <- codelist$code
   labels <- codelist$label
   ok <- object %in% codes | is.na(object)

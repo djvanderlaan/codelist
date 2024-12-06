@@ -27,7 +27,7 @@ code <- function(x, codelist, locale = cllocale(codelist)) {
     # Assume we got a variable with a codelist and not the codelist
     codelist <- attr(codelist, "codelist")
   }
-  cl <- filtercodelist(codelist, locale = locale)
+  cl <- clfilter(codelist, locale = locale)
   m <- match(x, cl$label)
   if (all(is.na(m)) && missing(locale) && sum(!is.na(x))>0) {
     # Check other locales

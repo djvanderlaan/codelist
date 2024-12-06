@@ -5,7 +5,7 @@ print.coded <- function(x, ...) {
   attr(xx, "class") <- setdiff(class(x), "coded")
   print(xx, quote = FALSE, ...)
   codelist <- attr(x, "codelist")
-  codelist <- filtercodelist(codelist, locale = NA)
+  codelist <- clfilter(codelist, locale = NA)
   width <- getOption("width")
   header <- "Codelist:"
   str <- paste0(codelist$code, "(=", codelist$label, ")")
