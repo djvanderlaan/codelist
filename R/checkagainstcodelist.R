@@ -11,7 +11,7 @@
 # \code{TRUE}. Therefore, the result cannot directly be used in, for example,
 # an \code{if} statement. Use \code{\link{isTRUE}}. 
 #
-checkwithcodelist <- function(x, codelist, check_codelist = TRUE) {
+checkagainstcodelist <- function(x, codelist, check_codelist = TRUE) {
   if (check_codelist) {
     if (!isTRUE(err <- clisvalid(codelist))) return(err)
   }
