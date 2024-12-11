@@ -21,7 +21,7 @@
 #' class and with the 'codelist' attribute removed.
 #'
 #' @seealso
-#' See \code{\link{lab}} for an alternative in comparisons.
+#' See \code{\link{as.label}} for an alternative in comparisons.
 #'
 #' @examples
 #' data(objectcodes)

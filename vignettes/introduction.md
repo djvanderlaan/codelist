@@ -154,11 +154,11 @@ In general the latter is more readable and makes the intent of the code much
 more clear (unless one can assume that the people reading the code will now most
 of the product codes).
 
-When comparing a `coded` object to labels, it is also possible to use the `lab`
-function. This will add the class "label" to the character vector. The
-comparison operator will then first call the `codes` function on the label:
+When comparing a `coded` object to labels, it is also possible to use the
+`as.label` function. This will add the class "label" to the character vector.
+The comparison operator will then first call the `codes` function on the label:
 ```{.R}
-subset(objectsales, product == lab("Electric Drill"))
+subset(objectsales, product == as.label("Electric Drill"))
 ```
 This only works for the equal-to and not-equal-to operators.
 
@@ -209,10 +209,10 @@ result in an error so this is a safe operation):
 objectsales$product[10] <- codes("Teddy Bear", objectcodes)
 objectsales$product[1:10] 
 ```
-Another option is to use the `lab` function which labels a character vector as a
+Another option is to use the `as.label` function which labels a character vector as a
 label:
 ```{.R}
-objectsales$product[10] <- lab("Electric Drill")
+objectsales$product[10] <- as.label("Electric Drill")
 objectsales$product[1:10] 
 ```
 
@@ -230,11 +230,11 @@ This makes a `coded` object safer to work with than, for example, a character of
 numeric vector with codes (a `factor` vector will also generate a warning for
 invalid factor levels).
 
-The `codes` function and the `lab` function (which call the `codes` function) will
+The `codes` function and the `as.label` function (which call the `codes` function) will
 also generate an error:
 ```{.R capture_warnings=TRUE}
 try({
-  objectsales$product[10] <- lab("Teddy bear")
+  objectsales$product[10] <- as.label("Teddy bear")
 })
 ```
 Assigning `NA` will of course still work:
@@ -262,9 +262,9 @@ when the label is valid:
 ```{.R}
 try({ y == "a" })
 ```
-One should use either the `codes` or `lab` function for that:
+One should use either the `codes` or `as.label` function for that:
 ```{.R}
-try({ y == lab("a") })
-try({ y == lab("foobar") })
+try({ y == as.label("a") })
+try({ y == as.label("foobar") })
 ```
 
