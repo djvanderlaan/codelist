@@ -11,6 +11,9 @@
 #' 
 #' @param ... used to pass arguments to other methods.
 #'
+#' @details
+#' \code{tocodes} has the same functionality as a call to \code{codes.default}. 
+#'
 #' @return
 #' Returns a vector of codes. Will give an error when one of the labels cannot
 #' be found in the codelist for the given locale. When \code{x} is an object of
