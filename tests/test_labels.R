@@ -6,7 +6,7 @@ source("helpers.R")
 op <- options(CLLOCALE=NULL)
 
 data(objectcodes)
-codelist <- codelist(objectcodes)
+codelist <- as.codelist(objectcodes)
 
 # Default settings
 x   <- c("A", "X", "A01", NA)

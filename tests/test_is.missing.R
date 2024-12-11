@@ -1,7 +1,7 @@
 library(codelist)
 source("helpers.R")
 
-cl <- codelist(data.frame(
+cl <- as.codelist(data.frame(
       code = c("A", "B", "X"),
       label = c("A", "B", "X"),
       missing = c(FALSE, FALSE, TRUE)
@@ -32,7 +32,7 @@ res <- is.missing(x, codelist = cl)
 expect_equal(res, c(FALSE, TRUE, TRUE))
 
 # No missing codes
-cl <- codelist(data.frame(
+cl <- as.codelist(data.frame(
       code = c("A", "B", "X"),
       label = c("A", "B", "X"),
       missing = c(0, 0, 0)
@@ -41,7 +41,7 @@ x <- c("A", "X", NA)
 res <- is.missing(x, codelist = cl)
 expect_equal(res, c(FALSE, FALSE, TRUE))
 # All missing codes
-cl <- codelist(data.frame(
+cl <- as.codelist(data.frame(
       code = c("A", "B", "X"),
       label = c("A", "B", "X"),
       missing = c(1, 1, 1)
@@ -51,7 +51,7 @@ res <- is.missing(x, codelist = cl)
 expect_equal(res, c(TRUE, TRUE, TRUE))
 
 # Missing missing
-cl <- codelist(data.frame(
+cl <- as.codelist(data.frame(
       code = c("A", "B", "X"),
       label = c("A", "B", "X")
     ))
@@ -60,7 +60,7 @@ res <- is.missing(x, codelist = cl)
 expect_equal(res, c(FALSE, FALSE, TRUE))
 
 # Empty x
-cl <- codelist(data.frame(
+cl <- as.codelist(data.frame(
       code = c("A", "B", "X"),
       label = c("A", "B", "X"),
       missing = c(FALSE, FALSE, TRUE)

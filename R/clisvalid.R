@@ -1,7 +1,7 @@
 #' Check if the codelist is valid
 #'
 #' @param codelist a \code{\link{codelist}} object or a \code{data.frame} that
-#'   is a valid code list.
+#'   is a valid \code{\link[=codelist]{code list}}.
 #'
 #' @return
 #' Returns \code{TRUE} when the code list is valid; returns a character vector

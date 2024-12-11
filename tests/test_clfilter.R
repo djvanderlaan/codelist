@@ -16,7 +16,7 @@ codelist <- data.frame(
 codelist2 <- codelist
 codelist2$labels <- toupper(codelist2$labels)
 codelist2$locale <- "UPPER"
-codelist <- codelist(rbind(codelist, codelist2))
+codelist <- as.codelist(rbind(codelist, codelist2))
 
 res <- clfilter(codelist, locale = "UPPER")
 expect_equal(res$code, c("A", "B", "A.1", "A.2", "B.1"))
@@ -57,7 +57,7 @@ codelist <- data.frame(
     labels = letters[1:7],
     parent = c(NA, NA, "A", "A", "A.1", "B", "B.1")
   )
-codelist <- codelist(codelist)
+codelist <- as.codelist(codelist)
 
 
 res <- clfilter(codelist, levels = 0)

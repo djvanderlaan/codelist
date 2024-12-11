@@ -5,7 +5,7 @@ source("helpers.R")
 op <- options(CLLOCALE=NULL)
 
 data(objectcodes)
-codelist <- codelist(objectcodes)
+codelist <- as.codelist(objectcodes)
 
 
 # Default usage

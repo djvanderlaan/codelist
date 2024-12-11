@@ -6,7 +6,7 @@ codelist <- data.frame(
   label = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codelist <- codelist(codelist)
+codelist <- as.codelist(codelist)
 
 # Basic usage
 x <- coded(c(4,4,1,NA), codelist)
@@ -48,7 +48,7 @@ codeliststr <- data.frame(
   label = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- codelist(codeliststr)
+codeliststr <- as.codelist(codeliststr)
 
 # Basic usage
 x <- coded(c("d","d","a",NA), codeliststr)
@@ -75,14 +75,14 @@ expect_error(x <- coded(c("d", "c",NA), codelist))
 x <- coded(factor(c("d","d","a",NA), levels = letters[1:4]))
 expect_equal(is.numeric(x), TRUE)
 expect_equal(x, c(4,4,1,NA), attributes = FALSE)
-expect_equal(attr(x, "codelist"), codelist(
+expect_equal(attr(x, "codelist"), as.codelist(
     data.frame(code = 1:4, label = letters[1:4])))
 
 # FActor; no codelist; empty vector
 x <- coded(factor(character(0), levels = letters[1:4]))
 expect_equal(is.numeric(x), TRUE)
 expect_equal(x, integer(0), attributes = FALSE)
-expect_equal(attr(x, "codelist"), codelist(
+expect_equal(attr(x, "codelist"), as.codelist(
     data.frame(code = 1:4, label = letters[1:4])))
 
 

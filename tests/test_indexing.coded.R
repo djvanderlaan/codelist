@@ -6,7 +6,7 @@ codelist <- data.frame(
   label = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codelist <- codelist(codelist)
+codelist <- as.codelist(codelist)
 
 # Various integer indexes
 x <- c(4,3,2,NA)
@@ -96,7 +96,7 @@ x[3] <- y
 expect_equal(x, coded(c(4,3,4), codelist))
 # value has wrong codelist
 x <- coded(c(4,3,NA), codelist)
-y <- coded(c(4), codelist(data.frame(codes=4:5)))
+y <- coded(c(4), as.codelist(data.frame(codes=4:5)))
 expect_error(x[3] <- y)
 # value has wrong codelist; codes match but labels don't
 x <- coded(c(4,3,NA), codelist)
@@ -111,7 +111,7 @@ codeliststr <- data.frame(
   label = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- codelist(codeliststr)
+codeliststr <- as.codelist(codeliststr)
 x <- coded(c("d", "c",NA), codeliststr)
 x[3] <- "e"
 expect_equal(x, coded(c("d", "c","e"), codeliststr))
@@ -129,7 +129,7 @@ codeliststr <- data.frame(
   label = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- codelist(codeliststr)
+codeliststr <- as.codelist(codeliststr)
 x <- coded(c("d", "c",NA), codeliststr)
 x[3] <- "e"
 expect_equal(x, coded(c("d", "c","e"), codeliststr))
@@ -145,7 +145,7 @@ codeliststr <- data.frame(
   label = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- codelist(codeliststr)
+codeliststr <- as.codelist(codeliststr)
 x <- coded(factor(c("d", "c",NA), levels = letters[1:5]), codeliststr)
 x[3] <- "e"
 expect_equal(x, coded(factor(c("d", "c","e"), letters[1:5]), codeliststr))
