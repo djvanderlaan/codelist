@@ -8,7 +8,7 @@
 #' of length 1 with a description of the problem when it is not valid.
 #'
 #' @export
-isvalidcodelist <- function(codelist) {
+clisvalid <- function(codelist) {
   if (!is.data.frame(codelist)) return("Code list is not a data.frame")
   if (!utils::hasName(codelist, "code")) 
     return("Field 'code' is missing from code list.")
@@ -16,8 +16,6 @@ isvalidcodelist <- function(codelist) {
     return("Field 'label' is missing from code list.")
   if (anyNA(codelist$code)) 
     return("Mising values in 'code' field.")
-#  if (anyDuplicated(codelist$code)) return("Duplicated codes.")
-  # TODO: handle lovcale
   if (!is.character(codelist$label)) 
     return("Field 'label' is not of type character.")
   if (utils::hasName(codelist, "parent")) {
