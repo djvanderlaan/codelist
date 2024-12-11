@@ -1,15 +1,21 @@
-#' Get the code belonging to a given label
+#' Get the codes belonging to given labels
 #' 
 #' @param x character vector with labels.
+#'
 #' @param codelist a \code{\link{codelist}} object or a \code{data.frame} that
-#'   is a valid code list or and object that has a 'codelist' attribute
-#'   containing a codelist.
-#' @param locale use the codes from the given locale. Should be character vector 
-#'  of length 1.
+#' is a valid code list or and object that has a 'codelist' attribute
+#' containing a codelist.
+#' 
+#' @param locale use the codes from the given locale. Should be a character vector 
+#' of length 1.
+#' 
+#' @param ... used to pass arguments to other methods.
 #'
 #' @return
 #' Returns a vector of codes. Will give an error when one of the labels cannot
-#' be found in the codelist for the given locale.
+#' be found in the codelist for the given locale. When \code{x} is an object of
+#' type 'coded' the codes themselves are returned stripped from the 'coded'
+#' class and with the 'codelist' attribute removed.
 #'
 #' @seealso
 #' See \code{\link{lab}} for an alternative in comparisons.
@@ -19,10 +25,17 @@
 #' data(objectsales)
 #' objectsales$product <- coded(objectsales$product, objectcodes)
 #'
-#' code(c("Hammer", "Electric Drill"), objectsales$product)
+#' codes(c("Hammer", "Electric Drill"), objectsales$product)
 #'
+#' @rdname codes
 #' @export
-code <- function(x, codelist, locale = cllocale(codelist)) {
+codes <- function(x, ...) {
+  UseMethod("codes")
+}
+
+#' @rdname codes
+#' @export
+codes.default <- function(x, codelist, locale = cllocale(codelist), ...) {
   if (!is.null(attr(codelist, "codelist"))) {
     # Assume we got a variable with a codelist and not the codelist
     codelist <- attr(codelist, "codelist")
@@ -48,5 +61,20 @@ code <- function(x, codelist, locale = cllocale(codelist)) {
       paste0("'", tmp, "'", collapse = ","))
   }
   cl$code[m]
+}
+
+#' @rdname codes
+#' @export
+codes.coded <- function(x, ...) {
+  res <- x
+  class(res) <- setdiff(class(res), "coded")
+  attr(res, "codelist") <- NULL
+  res
+}
+
+#' @rdname codes
+#' @export
+tocodes <- function(x, codelist, locale = cllocale(codelist)) {
+  codes.default(x, codelist = codelist, locale = locale)
 }
 

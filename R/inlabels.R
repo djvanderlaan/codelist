@@ -25,6 +25,6 @@
 #' @export
 inlabels <- function(x, labels, codelist = attr(x, "codelist"), 
     locale = cllocale(codelist)) {
-  x %in% code(labels, codelist)
+  x %in% codes(labels, codelist)
 }
 

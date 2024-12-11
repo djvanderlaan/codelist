@@ -132,15 +132,15 @@ options(op)
 
 ### Looking up codes based on label
 
-Using the `code` function it is possible to look up the codes based on a set of
+Using the `codes` function it is possible to look up the codes based on a set of
 labels. For example, below we look up the code for 'Hammer':
 ```{.R}
-code("Hammer", objectcodes)
+codes("Hammer", objectcodes)
 ```
 It is also possible to pass in the variable (an object with a `codelist`
 attribute) instead of the code list itself:
 ```{.R}
-code("Hammer", objectsales$product)
+codes("Hammer", objectsales$product)
 ```
 This could be used to make selections. For example, instead of 
 ```{.R}
@@ -148,7 +148,7 @@ subset(objectsales, product == "B02")
 ```
 one can do
 ```{.R}
-subset(objectsales, product == code("Electric Drill", product))
+subset(objectsales, product == codes("Electric Drill", product))
 ```
 In general the latter is more readable and makes the intent of the code much
 more clear (unless one can assume that the people reading the code will now most
@@ -156,7 +156,7 @@ of the product codes).
 
 When comparing a `coded` object to labels, it is also possible to use the `lab`
 function. This will add the class "label" to the character vector. The
-comparison operator will then first call the `code` function on the label:
+comparison operator will then first call the `codes` function on the label:
 ```{.R}
 subset(objectsales, product == lab("Electric Drill"))
 ```
@@ -171,13 +171,13 @@ However, a small, difficult to spot, spelling mistake would have resulted in:
 ```{.R}
 subset(objectsales, labels(product) == "Electric drll")
 ```
-And we could have believed that no electric drills were sold. The `code`
+And we could have believed that no electric drills were sold. The `codes`
 function will also check if the provided labels are valid and if not will
 generate an error (the `try` is to make sure don't actually throw an
 error). 
 ```{.R capture_warnings=TRUE}
 try({
-  subset(objectsales, product == code("Electric drill", product))
+  subset(objectsales, product == codes("Electric drill", product))
 })
 ```
 Since selecting on labels is a common operation, there is also the `inlabels`
@@ -203,10 +203,10 @@ also be assigned to:
 objectsales$product[10] <- "A01"
 objectsales$product[1:10] 
 ```
-Here the `code` function can also be of use (again, an invalid label will
+Here the `codes` function can also be of use (again, an invalid label will
 result in an error so this is a safe operation):
 ```{.R}
-objectsales$product[10] <- code("Teddy Bear", objectcodes)
+objectsales$product[10] <- codes("Teddy Bear", objectcodes)
 objectsales$product[1:10] 
 ```
 Another option is to use the `lab` function which labels a character vector as a
@@ -230,7 +230,7 @@ This makes a `coded` object safer to work with than, for example, a character of
 numeric vector with codes (a `factor` vector will also generate a warning for
 invalid factor levels).
 
-The `code` function and the `lab` function (which call the `code` function) will
+The `codes` function and the `lab` function (which call the `codes` function) will
 also generate an error:
 ```{.R capture_warnings=TRUE}
 try({
@@ -262,7 +262,7 @@ when the label is valid:
 ```{.R}
 try({ y == "a" })
 ```
-One should use either the `code` or `lab` function for that:
+One should use either the `codes` or `lab` function for that:
 ```{.R}
 try({ y == lab("a") })
 try({ y == lab("foobar") })

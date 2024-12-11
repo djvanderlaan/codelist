@@ -15,7 +15,7 @@
   }
   codelist <- attr(x, "codelist")
   if (methods::is(value, "label")) {
-    value <- code(value, codelist)
+    value <- codes(value, codelist)
   } else if (ischar(value) && ischar(codelist$code)) {
     value <- as.character(value)
   } else if (all(is.na(value))) {
@@ -49,7 +49,7 @@
   }
   codelist <- attr(x, "codelist")
   if (methods::is(value, "label")) {
-    value <- code(value, codelist)
+    value <- codes(value, codelist)
   } else if (ischar(value) && ischar(codelist$code)) {
     value <- as.character(value)
   } else if (all(is.na(value))) {

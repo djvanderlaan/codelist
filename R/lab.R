@@ -8,7 +8,7 @@
 #' Returns a character vector with the class "label". 
 #'
 #' @seealso
-#' Uses \code{\link{code}}.
+#' Uses \code{\link{codes}}.
 #'
 #' @examples
 #' data(objectcodes)
@@ -19,7 +19,7 @@
 #' subset(objectsales, product == lab("Hammer"))
 #' 
 #' # This is the same as
-#' subset(objectsales, product == code("Hammer", product))
+#' subset(objectsales, product == codes("Hammer", product))
 #' 
 #'@export 
 lab <- function(x) {

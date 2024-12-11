@@ -12,7 +12,7 @@ Ops.coded <- function(e1, e2) {
   }
   codelist <- attr(e1, "codelist")
   if (methods::is(e2, "label")) {
-    e2 <- code(e2, e1)
+    e2 <- codes(e2, e1)
   } else if (ischar(e2) && ischar(codelist$code)) {
     e2 <- as.character(e2)
   } else if (all(is.na(e2))) {
