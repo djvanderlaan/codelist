@@ -25,8 +25,7 @@
 #'
 #' @examples
 #'
-#' x <- coded(c(1,4,2), as.codelist(data.frame(
-#'   codes = 1:4, labels = letters[1:4])))
+#' x <- coded(c(1,4,2), codelist(codes = 1:4, labels = letters[1:4]))
 #' print(x)
 #' labels(x)
 #'
@@ -52,8 +51,7 @@ coded.default <- function(x, codelist = attr(x, "codelist"), ...) {
 #' @export
 coded.factor <- function(x, codelist = attr(x, "codelist"), ...) {
   if (missing(codelist) && is.null(codelist)) {
-    codelist <- as.codelist(data.frame(code = seq_len(nlevels(x)), 
-        label <- levels(x)))
+    codelist <- codelist(codes = seq_len(nlevels(x)), labels = levels(x))
     x <- as.integer(x)
   } else {
     if (!is.codelist(codelist)) codelist <- as.codelist(codelist)

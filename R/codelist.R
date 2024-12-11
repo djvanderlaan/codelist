@@ -1,23 +1,23 @@
 #' Create a codelist object
 #'
-#' @param code a vector with the codes.
+#' @param codes a vector with the codes.
 #'
-#' @param label optional vector with the labels. Will be converted to character
-#' and should have the same length as \code{code}. When \code{label} is not
-#' given \code{code} is used for the labels.
+#' @param labels optional vector with the labels. Will be converted to character
+#' and should have the same length as \code{codes}. When \code{labels} is not
+#' given \code{codes} is used for the labels.
 #'
-#' @param description optional vector with the descriptions of the codes. Will be
-#' converted to character and should have the same length as \code{code}.
+#' @param descriptions optional vector with the descriptions of the codes. Will be
+#' converted to character and should have the same length as \code{codes}.
 #'
 #' @param parent optional vector with the parents of the codes. Should be of the
-#' same type and length as \code{code} and should contain only values present in
-#' \code{code} or missing values. This can be used to define simple hierarchies.
+#' same type and length as \code{codes} and should contain only values present in
+#' \code{codes} or missing values. This can be used to define simple hierarchies.
 #' Codes with NA as their parent are the top-level (level 0) codes in the
 #' hierarchy.
 #'
-#' @param locale optional vector with the locale of the labels, description etc.
-#' of the code. This should be a character vector with the same length as
-#' \code{code}. When the code list contains multiple locales each code should be
+#' @param locale optional vector with the locale of the labels, descriptions etc.
+#' of the codes. This should be a character vector with the same length as
+#' \code{codes}. When the code list contains multiple locales each code should be
 #' present in each locale.
 #'
 #' @param missing optional logical vector indicating whether or not the
@@ -31,13 +31,13 @@
 #' kept. 
 #' 
 #' @export
-codelist <- function(code, label = NULL, description = NULL, parent = NULL, 
+codelist <- function(codes, labels = NULL, descriptions = NULL, parent = NULL, 
     locale = NULL, missing = NULL) {
-  if (missing(label) || is.null(label)) label <- as.character(code)
-  label <- as.character(label)
-  codelist <- data.frame(code, label)
-  if (!missing(description) && !is.null(description))
-    codelist$description <- as.character(description)
+  if (missing(labels) || is.null(labels)) labels <- as.character(codes)
+  labels <- as.character(labels)
+  codelist <- data.frame(code = codes, label = labels)
+  if (!missing(descriptions) && !is.null(descriptions))
+    codelist$description <- as.character(descriptions)
   if (!missing(parent) && !is.null(parent))
     codelist$parent <- parent
   if (!missing(locale) && !is.null(locale))
@@ -46,5 +46,4 @@ codelist <- function(code, label = NULL, description = NULL, parent = NULL,
     codelist$missing <- as.logical(missing)
   as.codelist(codelist)
 }
-
 

@@ -1,12 +1,11 @@
 library(codelist)
 source("helpers.R")
 
-codelist <- data.frame(
-  code = 1:5,
-  label = letters[1:5],
+codelist <- codelist(
+  codes = 1:5,
+  labels = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codelist <- as.codelist(codelist)
 
 # Various integer indexes
 x <- c(4,3,2,NA)
@@ -96,7 +95,7 @@ x[3] <- y
 expect_equal(x, coded(c(4,3,4), codelist))
 # value has wrong codelist
 x <- coded(c(4,3,NA), codelist)
-y <- coded(c(4), as.codelist(data.frame(codes=4:5)))
+y <- coded(c(4), codelist(codes=4:5))
 expect_error(x[3] <- y)
 # value has wrong codelist; codes match but labels don't
 x <- coded(c(4,3,NA), codelist)
@@ -106,12 +105,11 @@ y <- coded(c(4), cl)
 expect_error(x[3] <- y)
 
 # character codes
-codeliststr <- data.frame(
-  code = letters[1:5],
-  label = letters[1:5],
+codeliststr <- codelist(
+  codes = letters[1:5],
+  labels = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- as.codelist(codeliststr)
 x <- coded(c("d", "c",NA), codeliststr)
 x[3] <- "e"
 expect_equal(x, coded(c("d", "c","e"), codeliststr))
@@ -124,12 +122,11 @@ x[1] <- NA
 expect_equal(x, coded(c(NA, "c",NA), codeliststr))
 
 # factor codes
-codeliststr <- data.frame(
-  code = factor(letters[1:5]),
-  label = letters[1:5],
+codeliststr <- codelist(
+  codes = factor(letters[1:5]),
+  labels = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- as.codelist(codeliststr)
 x <- coded(c("d", "c",NA), codeliststr)
 x[3] <- "e"
 expect_equal(x, coded(c("d", "c","e"), codeliststr))
@@ -140,12 +137,11 @@ expect_error(x[3] <- factor("f"))
 expect_error(x[3] <- factor("f"))
 
 # factor codes; and values
-codeliststr <- data.frame(
-  code = factor(letters[1:5]),
-  label = letters[1:5],
+codeliststr <- codelist(
+  codes = factor(letters[1:5]),
+  labels = letters[1:5],
   missing = c(0,0,0,0,1)
 )
-codeliststr <- as.codelist(codeliststr)
 x <- coded(factor(c("d", "c",NA), levels = letters[1:5]), codeliststr)
 x[3] <- "e"
 expect_equal(x, coded(factor(c("d", "c","e"), letters[1:5]), codeliststr))
