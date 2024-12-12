@@ -4,7 +4,7 @@
 #'
 #' @param labels optional vector with the labels. Will be converted to character
 #' and should have the same length as \code{codes}. When \code{labels} is not
-#' given \code{codes} is used for the labels.
+#' given \code{as.character(codes)} is used for the labels.
 #'
 #' @param descriptions optional vector with the descriptions of the codes. Will be
 #' converted to character and should have the same length as \code{codes}.
@@ -27,8 +27,7 @@
 #' @return
 #' Returns a \code{codelist} object which is a \code{data.frame} with at minimum
 #' the columns 'code' and 'label' and optionally 'description', 'parent',
-#' 'locale' and 'missing'. When \code{x} containds additional columns these are
-#' kept. 
+#' 'locale' and 'missing'. 
 #' 
 #' @export
 codelist <- function(codes, labels = NULL, descriptions = NULL, parent = NULL, 
