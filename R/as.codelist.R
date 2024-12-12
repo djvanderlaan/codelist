@@ -18,6 +18,9 @@
 #' When there is no column with the name given by \code{label} in \code{x}, a
 #' new column 'label' is derived containing codes converted to character.
 #'
+#' @seealso
+#' \code{\link{codelist}} for a description of the \code{codelist} object.
+#'
 #' @return
 #' Returns a \code{\link{codelist}} object which is a \code{data.frame} with at
 #' minimum the columns 'code' and 'label' and optionally 'description',
