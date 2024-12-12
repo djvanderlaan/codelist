@@ -57,14 +57,6 @@
 #' 'NA' it is assumed this is a top level code. The hierarchy should form a
 #' tree.}
 #'
-#' \item{level}{Optional. In case of a hierarchical code list the name of the
-#' level in the tree. When not present the levels are numbered from 0, with 0
-#' being the top-level (e.g. codes with no parent); level 1 the codes with a
-#' level 0 parent; etc. This can be used to name the different levels. For
-#' example a geographical code list might have the levels 'country',
-#' 'municipality', 'district' and 'neighbourhood'. Missing values are not
-#' allowed.}
-#'
 #' The validity of the code list can be checked using \code{\link{clisvalid}}.
 #' 
 #' @export

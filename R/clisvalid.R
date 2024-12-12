@@ -56,7 +56,7 @@ clisvalid <- function(codelist) {
       !(is.numeric(codelist$missing) && all(codelist$missing %in% c(0,1))))
       return("Field 'missing' cannot be interpreted as logical")
     if (anyNA(codelist$missing)) 
-      return("Missing values in 'mising' field.")
+      return("Missing values in 'missing' field.")
   }
   TRUE
 }
