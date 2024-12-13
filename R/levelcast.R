@@ -43,7 +43,7 @@ levelcast <- function(x, level, codelist = attr(x, "codelist"),
   stopifnot(is.numeric(level), length(level) == 1, !is.na(level))
   level <- as.integer(level)
   # Get the levels in the code list
-  levels <- codelist:::cllevels(codelist)
+  levels <- cllevels(codelist)
   if (level > max(levels) | level < 0)
     stop("Requested level is not present in codelist")
   # Ignore missing values
