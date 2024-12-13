@@ -27,7 +27,37 @@
 #' @return
 #' Returns a \code{codelist} object which is a \code{data.frame} with at minimum
 #' the columns 'code' and 'label' and optionally 'description', 'parent',
-#' 'locale' and 'missing'. 
+#' 'locale' and 'missing'. See below for a description of the columns:
+#'
+#' \item{code}{The codes. It is expected that these are either characters or
+#' integers although other types are probably supported. For a given locale (see
+#' below) they should be unique. Missing values are not allowed.}
+#'
+#' \item{label}{The labels of the codes. These are characters. Missing values
+#' are not allowed.} 
+#'
+#' \item{description}{Optional. The description of the codes. These are characters.
+#' Missing values are not allowed.}
+#'
+#' \item{missing}{Optional. Logical vector indicating whether or not the
+#' corresponding code can be treated as a special value. This can be used to
+#' have different codes for different types of missingness. Missing values are
+#' not allowed.}
+#'
+#' \item{locale}{Optional. Character vector indicating for the given row 
+#' which locale the label and description belong to. The default use is to have
+#' different translations of the labels and descriptions. However, this can also
+#' be used, for example, to specify short and long labels. When there is more
+#' than one locale, there should be multiple lines for each code, one for each
+#' locale.}
+#'
+#' \item{parent}{Optional. The parent of the code. This can be used to specify
+#' simple hierarchies. These should be of the same type as the 'code' column and
+#' values should be present in the 'code' column or be 'NA'. When the parent is
+#' 'NA' it is assumed this is a top level code. The hierarchy should form a
+#' tree.}
+#'
+#' The validity of the code list can be checked using \code{\link{clisvalid}}.
 #' 
 #' @export
 codelist <- function(codes, labels = NULL, descriptions = NULL, parent = NULL, 

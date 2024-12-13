@@ -94,6 +94,8 @@ expect_error(res <- clfilter(codelist, levels = c(0:3)))
 expect_error(res <- clfilter(codelist, levels = "0"))
 
 
+
+
 # =============================================================================
 # reset options
 

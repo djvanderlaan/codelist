@@ -19,9 +19,8 @@
 #' keeps classes and attributes assiated with \code{x}. This object is a copy of
 #' \code{x} with a \code{codelist} attribute added. 
 #'
-#' When \code{x} is a factor \code{x} is converted to a character vector when
-#' the codes in the code list are of type character or to numeric when the codes
-#' are numeric. 
+#' When \code{x} is a factor \code{x} is converted to an integer vector. The
+#' labels are the levels of the factor.
 #'
 #' @examples
 #'

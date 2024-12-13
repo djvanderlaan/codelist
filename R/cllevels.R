@@ -1,6 +1,5 @@
 
 cllevels <- function(codelist) {
-  if (utils::hasName(codelist, "level")) return(codelist$level)
   if (!utils::hasName(codelist, "parent")) return(integer(nrow(codelist)))
   levels <- ifelse(is.na(codelist$parent), 0L, NA_integer_)
   if (all(is.na(levels))) 
@@ -16,3 +15,4 @@ cllevels <- function(codelist) {
   }
   levels
 }
+

@@ -274,3 +274,6 @@ cl <- data.frame(
   label = c("A", "B", "a")
   )
 expect_error(res <- as.codelist(cl))
+
+
+
