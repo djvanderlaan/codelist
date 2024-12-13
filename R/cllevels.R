@@ -1,4 +1,22 @@
-
+#' Get the hierarchical level for each code in a code list
+#'
+#' @param codelist the \code{\link{codelist}} for which to determin the levels.
+#' 
+#' @details
+#' Levels are numbered with 0 being the top-most level, which contains code
+#' without parent (parent missing). In level 1 are codes that have a parent in
+#' level 0. Etc.
+#' 
+#' When the code list does not have a 'parent' column, all codes are in level 0.
+#' @return
+#' An integer vector with the same length as the number of rows in the code
+#' list.
+#' 
+#' @examples
+#' data(objectcodes)
+#' cllevels(objectcodes)
+#'
+#' @export
 cllevels <- function(codelist) {
   if (!utils::hasName(codelist, "parent")) return(integer(nrow(codelist)))
   levels <- ifelse(is.na(codelist$parent), 0L, NA_integer_)
