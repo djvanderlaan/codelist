@@ -80,3 +80,4 @@ levelcast <- function(x, level, codelist = attr(x, "codelist"),
   }
   x
 }
+

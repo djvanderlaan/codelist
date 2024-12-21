@@ -110,7 +110,7 @@ expect_equal(res, factor(c("Toys", NA, "Teddy Bear", NA), levels = l))
 
 # labelm
 x   <- c("A", "X", "A01", NA)
-res <- tolabels(x, missing = FALSE, codelist = codelist)
+res <- to_labels(x, missing = FALSE, codelist = codelist)
 res2 <- labels.coded(x, codelist = codelist, missing = FALSE)
 expect_equal(res, res2)
 

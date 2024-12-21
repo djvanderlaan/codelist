@@ -58,15 +58,15 @@ objectsales$product |> head(10)
 
 One of the things we can do is convert the codes to their corresponding labels:
 ```{.R #ex30}
-tolabels(objectsales$product, objectcodes) |> head(10)
+to_labels(objectsales$product, objectcodes) |> head(10)
 ```
-The `tolabels` function accepts a vector with codes and a `codelist` for this vector.
+The `to_labels` function accepts a vector with codes and a `codelist` for this vector.
 It can get a bit tiresome to keep having to pass in the `codelist` attribute. If
 it is missing, the looks for a 'codelist' attribute:
 
 ```{.R #ex40}
 attr(objectsales$product, "codelist") <- objectcodes
-tolabels(objectsales$product) |> head(10)
+to_labels(objectsales$product) |> head(10)
 ```
 The `codelist` package also has a `coded` type. Converting to a `coded` object
 adds the `coded` class. This will result in some formatting and later on we will
@@ -74,13 +74,13 @@ see that this also ensures that we cannot assign invalid codes to the vector:
 ```{.R #ex50}
 objectsales$product <- coded(objectsales$product, objectcodes)
 objectsales$product |> head(10)
-tolabels(objectsales$product) |> head(10)
+to_labels(objectsales$product) |> head(10)
 ```
 For `coded` objects there is also the `labels` method:
 ```
 labels(objectsales$product) |> head(10)
 ```
-The `labels` method and the `tolabels` function can be used to get readable
+The `labels` method and the `to_labels` function can be used to get readable
 output from various R-functions:
 ```{.R #ex60}
 table(labels(objectsales$product), useNA = "ifany")

@@ -19,7 +19,7 @@
 #' @param ... ignored
 #'
 #' @details
-#' \code{tolabels} calls \code{labels.coded} directly and is meant as a
+#' \code{to_labels} calls \code{labels.coded} directly and is meant as a
 #' substitute for \code{labels.coded} for objects that are not of type 'coded'.
 #' 
 #' @return 
@@ -37,7 +37,7 @@
 #' labels(objectsales$product, droplevels = TRUE) |> 
 #'   table(useNA = "ifany")
 #'
-#' tolabels(c("A", "B"), codelist = objectcodes)
+#' to_labels(c("A", "B"), codelist = objectcodes)
 #' # is the same as 
 #' labels.coded(c("A", "B"), codelist = objectcodes)
 #'
@@ -73,7 +73,7 @@ labels.coded <- function(object, missing = TRUE, droplevels = FALSE,
 
 #' @rdname labels
 #' @export
-tolabels <- function(x, codelist = attr(x, "codelist"), missing = TRUE, 
+to_labels <- function(x, codelist = attr(x, "codelist"), missing = TRUE, 
     droplevels = FALSE, locale = cl_locale(codelist)) {
   labels.coded(x, missing = missing, droplevels = droplevels, 
     codelist = codelist, locale = locale)
