@@ -18,13 +18,13 @@
 #' data(objectsales)
 #' objectsales$product <- coded(objectsales$product, objectcodes)
 #'
-#' inlabels(objectsales$product, c("Electric Drill", "Toys"))
+#' in_labels(objectsales$product, c("Electric Drill", "Toys"))
 #'
-#' subset(objectsales, inlabels(product, c("Electric Drill", "Hammer")))
+#' subset(objectsales, in_labels(product, c("Electric Drill", "Hammer")))
 #'
 #' @export
-inlabels <- function(x, labels, codelist = attr(x, "codelist"), 
-    locale = cllocale(codelist)) {
+in_labels <- function(x, labels, codelist = attr(x, "codelist"), 
+    locale = cl_locale(codelist)) {
   x %in% codes(labels, codelist)
 }
 

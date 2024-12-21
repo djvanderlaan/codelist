@@ -1,6 +1,6 @@
 
 
-cllocales <- function(codelist) {
+cl_locales <- function(codelist) {
   if (utils::hasName(codelist, "locale")) {
     codelist$locale |> unique() |> removena()
   } else NA_character_

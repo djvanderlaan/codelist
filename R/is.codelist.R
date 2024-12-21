@@ -9,6 +9,6 @@
 #'
 #' @export
 is.codelist <- function(x) {
-  methods::is(x, "codelist") || isTRUE(clisvalid(x))
+  methods::is(x, "codelist") || isTRUE(cl_is_valid(x))
 }
 

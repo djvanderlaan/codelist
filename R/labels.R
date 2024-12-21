@@ -45,11 +45,11 @@
 #' @export labels.coded
 #' @exportS3Method base::labels
 labels.coded <- function(object, missing = TRUE, droplevels = FALSE, 
-    codelist = attr(object, "codelist"), locale = cllocale(codelist), ...) {
+    codelist = attr(object, "codelist"), locale = cl_locale(codelist), ...) {
   if (missing(codelist) && is.null(codelist)) 
     stop("object has no 'codelist' attribute. codelist has to be specified manually.")
   stopifnot(is.codelist(codelist))
-  codelist <- clfilter(codelist, locale = locale)
+  codelist <- cl_filter(codelist, locale = locale)
   codes <- codelist$code
   labels <- codelist$label
   ok <- object %in% codes | is.na(object)
@@ -74,7 +74,7 @@ labels.coded <- function(object, missing = TRUE, droplevels = FALSE,
 #' @rdname labels
 #' @export
 tolabels <- function(x, codelist = attr(x, "codelist"), missing = TRUE, 
-    droplevels = FALSE, locale = cllocale(codelist)) {
+    droplevels = FALSE, locale = cl_locale(codelist)) {
   labels.coded(x, missing = missing, droplevels = droplevels, 
     codelist = codelist, locale = locale)
 }

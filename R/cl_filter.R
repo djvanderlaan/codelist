@@ -4,7 +4,7 @@
 #'
 #' @param locale use the codes from the given locale. Should be character
 #' vector of length 1. When NA the default locale is used (as returned by
-#' \code{\link{cllocale}}.
+#' \code{\link{cl_locale}}.
 #'
 #' @param levels vector with levels on which to filter an hierarchical code list.
 #' Levels are numbered from 0 with 0 the topmost level. See 'Details'. When a
@@ -24,21 +24,21 @@
 #' Returns a \code{\link{codelist}} with the selected encoding and/or levels.
 #'
 #' @export
-clfilter <- function(codelist, locale, levels, check_levels = TRUE) {
+cl_filter <- function(codelist, locale, levels, check_levels = TRUE) {
   if (!missing(locale)) {
-    if (is.na(locale)) locale <- cllocale(codelist)
-    codelist <- clfilter_by_locale(codelist, locale)
+    if (is.na(locale)) locale <- cl_locale(codelist)
+    codelist <- cl_filter_by_locale(codelist, locale)
   }
   if (!missing(levels)) {
-    codelist <- clfilter_by_level(codelist, levels, check_levels)
+    codelist <- cl_filter_by_level(codelist, levels, check_levels)
   }
   codelist
 }
 
 
-clfilter_by_locale <- function(codelist, 
+cl_filter_by_locale <- function(codelist, 
     preferred = getOption("CLLOCALE", NA_character_)) {
-  locale <- cllocale(codelist, preferred)
+  locale <- cl_locale(codelist, preferred)
   if (!(missing(preferred) || is.na(preferred)) && locale != preferred) {
     warning("Preferred locale not found. Using default of '", locale, "'.")
   }
@@ -53,11 +53,11 @@ clfilter_by_locale <- function(codelist,
   }
 }
 
-clfilter_by_level <- function(codelist, level, check_levels = TRUE) {
+cl_filter_by_level <- function(codelist, level, check_levels = TRUE) {
   stopifnot(is.numeric(level))
   if (length(level) < 1) stop("level should be are least of length 1")
   if (any(is.na(level))) stop("Missing values in level.")
-  levels <- cllevels(codelist)
+  levels <- cl_levels(codelist)
   if (!all(level %in% levels)) {
     notfound <- level[!(level %in% levels)]
     stop("level '", paste0(notfound, collapse = "', '"), 

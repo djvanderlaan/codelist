@@ -10,9 +10,9 @@
 #' codelist does not use a locale.
 #'
 #' @export
-cllocale <- function(codelist, 
+cl_locale <- function(codelist, 
     preferred = getOption("CLLOCALE", NA_character_)) {
-  locales <- cllocales(codelist)
+  locales <- cl_locales(codelist)
   if (preferred %in% locales) {
     preferred
   } else {

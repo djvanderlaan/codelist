@@ -6,7 +6,7 @@
 #' A single integer value (>= 1) with the number of levels.
 #' 
 #' @export
-clnlevels <- function(codelist) {
-  level <- cllevels(codelist) 
+cl_nlevels <- function(codelist) {
+  level <- cl_levels(codelist) 
   as.integer(max(level) + 1)
 }

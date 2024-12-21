@@ -14,10 +14,10 @@
 #' 
 #' @examples
 #' data(objectcodes)
-#' cllevels(objectcodes)
+#' cl_levels(objectcodes)
 #'
 #' @export
-cllevels <- function(codelist) {
+cl_levels <- function(codelist) {
   if (!utils::hasName(codelist, "parent")) return(integer(nrow(codelist)))
   levels <- ifelse(is.na(codelist$parent), 0L, NA_integer_)
   if (all(is.na(levels))) 

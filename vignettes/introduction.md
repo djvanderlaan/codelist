@@ -106,10 +106,10 @@ versions of for the labels and descriptions. This can be used the specify
 different translations as in this example, but can also be used to specify
 different versions, for example, long and short labels. By default all methods
 will use the first locale in the code list as the defalult locale; the locale
-returned by the `cllocale` function:
+returned by the `cl_locale` function:
 
 ```{.R #ex90}
-cllocale(objectcodes)
+cl_locale(objectcodes)
 ```
 Most methods also have a `locale` argument with which it is possible to specify
 the preferred locale (the default is used when the preferred locale is not
@@ -119,12 +119,12 @@ present). For example:
 labels(objectsales$product, locale = "NL") |> head()
 ```
 It can become tedious having to specify the locale for each function call. The
-`cllocale` will look at the `CLLOCALE` option, when present, to get the
+`cl_locale` will look at the `CLLOCALE` option, when present, to get the
 preferred locale. Therefore, to set a default preferred locale:
 
 ```{.R #ex110}
 op <- options(CLLOCALE = "NL")
-cllocale(objectcodes)
+cl_locale(objectcodes)
 tapply(objectsales$unitprice, labels(objectsales$product), mean)
 # Set the locale back to the original value (unset)
 options(op)
@@ -180,16 +180,16 @@ try({
   subset(objectsales, product == codes("Electric drill", cl(product)))
 })
 ```
-Since selecting on labels is a common operation, there is also the `inlabels`
+Since selecting on labels is a common operation, there is also the `in_labels`
 function that will return a logical vector indicating whether or not a code has
 a label in the given set:
 ```{.R #ex200 capture_warnings=TRUE}
-subset(objectsales, inlabels(product, "Electric Drill"))
+subset(objectsales, in_labels(product, "Electric Drill"))
 ```
 This function will of course also generate an error in case of invalid codes.
 ```{.R #ex210 capture_warnings=TRUE}
 try({
-  subset(objectsales, inlabels(product, "Electric drill"))
+  subset(objectsales, in_labels(product, "Electric drill"))
 })
 ```
 In the examples above we used the base function `subset`, but this will of

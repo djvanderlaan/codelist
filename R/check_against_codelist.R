@@ -1,4 +1,3 @@
-
 # Check if the values in x match those in the code list
 # 
 # @param x the vector with values to check
@@ -11,9 +10,9 @@
 # \code{TRUE}. Therefore, the result cannot directly be used in, for example,
 # an \code{if} statement. Use \code{\link{isTRUE}}. 
 #
-checkagainstcodelist <- function(x, codelist, check_codelist = TRUE) {
+check_against_codelist <- function(x, codelist, check_codelist = TRUE) {
   if (check_codelist) {
-    if (!isTRUE(err <- clisvalid(codelist))) return(err)
+    if (!isTRUE(err <- cl_is_valid(codelist))) return(err)
   }
   if (length(x) == 0 || all(is.na(x))) return(TRUE)
   if (!sameclass(x, codelist$code)) 

@@ -39,13 +39,13 @@ codes <- function(x, ...) {
 
 #' @rdname codes
 #' @export
-codes.default <- function(x, codelist, locale = cllocale(codelist), ...) {
+codes.default <- function(x, codelist, locale = cl_locale(codelist), ...) {
   if (!is.null(attr(codelist, "codelist"))) {
     # Assume we got a variable with a codelist and not the codelist
     stop("FOOOOOOO")
     codelist <- attr(codelist, "codelist")
   }
-  cl <- clfilter(codelist, locale = locale)
+  cl <- cl_filter(codelist, locale = locale)
   m <- match(x, cl$label)
   if (all(is.na(m)) && missing(locale) && sum(!is.na(x))>0) {
     # Check other locales
@@ -79,7 +79,7 @@ codes.coded <- function(x, ...) {
 
 #' @rdname codes
 #' @export
-tocodes <- function(x, codelist, locale = cllocale(codelist)) {
+tocodes <- function(x, codelist, locale = cl_locale(codelist)) {
   codes.default(x, codelist = codelist, locale = locale)
 }
 

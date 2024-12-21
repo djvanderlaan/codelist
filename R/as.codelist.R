@@ -64,7 +64,7 @@ as.codelist.data.frame <- function(x, code = names(x)[1], label = names(x)[2],
     names(x)[names(x) == missing] <- "missing"
     x$missing <- as.logical(x$missing)
   }
-  if (!isTRUE(err <- clisvalid(x))) stop(err)
+  if (!isTRUE(err <- cl_is_valid(x))) stop(err)
   structure(x, class = c("codelist", "data.frame"))
 }
 

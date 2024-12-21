@@ -57,7 +57,7 @@
 #' 'NA' it is assumed this is a top level code. The hierarchy should form a
 #' tree.}
 #'
-#' The validity of the code list can be checked using \code{\link{clisvalid}}.
+#' The validity of the code list can be checked using \code{\link{cl_is_valid}}.
 #' 
 #' @export
 codelist <- function(codes, labels = NULL, descriptions = NULL, parent = NULL, 

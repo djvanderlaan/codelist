@@ -8,7 +8,7 @@
 #' of length 1 with a description of the problem when it is not valid.
 #'
 #' @export
-clisvalid <- function(codelist) {
+cl_is_valid <- function(codelist) {
   if (!is.data.frame(codelist)) return("Code list is not a data.frame")
   if (!utils::hasName(codelist, "code")) 
     return("Field 'code' is missing from code list.")
@@ -23,7 +23,7 @@ clisvalid <- function(codelist) {
       return ("Class of 'parent' column is not equal to that of the 'code' column")
     if (!all(is.na(codelist$parent) | (codelist$parent %in% codelist$code)))
       return ("Not all codes in 'parent' column are present in 'code' column.")
-    if (anyNA(cllevels(codelist))) 
+    if (anyNA(cl_levels(codelist))) 
       return ("Codelist does not form a proper hierarchy.")
   }
   if (anyNA(codelist$label)) 
