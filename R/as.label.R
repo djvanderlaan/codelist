@@ -22,7 +22,7 @@
 #' subset(objectsales, product == as.label("Hammer"))
 #' 
 #' # This is the same as
-#' subset(objectsales, product == codes("Hammer", product))
+#' subset(objectsales, product == codes("Hammer", cl(product)))
 #' 
 #'@export 
 as.label <- function(x) {

@@ -56,7 +56,7 @@ expect_equal(res, c("B01", "A03", NA))
 # Pass codelist as attribute of other vector
 x <- c("Hammer", "Marbles", NA)
 y <- structure(c("A01"), codelist = codelist)
-res <- codes(x, y)
+res <- codes(x, cl(y))
 expect_equal(res, c("B01", "A03", NA))
 
 # Different locale

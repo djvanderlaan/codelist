@@ -28,7 +28,8 @@
 #' data(objectsales)
 #' objectsales$product <- coded(objectsales$product, objectcodes)
 #'
-#' codes(c("Hammer", "Electric Drill"), objectsales$product)
+#' codes(c("Hammer", "Electric Drill"), objectcodes)
+#' codes(c("Hammer", "Electric Drill"), cl(objectsales$product))
 #'
 #' @rdname codes
 #' @export
@@ -41,6 +42,7 @@ codes <- function(x, ...) {
 codes.default <- function(x, codelist, locale = cllocale(codelist), ...) {
   if (!is.null(attr(codelist, "codelist"))) {
     # Assume we got a variable with a codelist and not the codelist
+    stop("FOOOOOOO")
     codelist <- attr(codelist, "codelist")
   }
   cl <- clfilter(codelist, locale = locale)

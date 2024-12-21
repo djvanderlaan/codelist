@@ -137,10 +137,10 @@ labels. For example, below we look up the code for 'Hammer':
 ```{.R}
 codes("Hammer", objectcodes)
 ```
-It is also possible to pass in the variable (an object with a `codelist`
-attribute) instead of the code list itself:
+or getting the code list form the relevant variable itself using the `cl`
+method that returns the code list of the variable:
 ```{.R}
-codes("Hammer", objectsales$product)
+codes("Hammer", cl(objectsales$product))
 ```
 This could be used to make selections. For example, instead of 
 ```{.R}
@@ -148,7 +148,7 @@ subset(objectsales, product == "B02")
 ```
 one can do
 ```{.R}
-subset(objectsales, product == codes("Electric Drill", product))
+subset(objectsales, product == codes("Electric Drill", cl(product)))
 ```
 In general the latter is more readable and makes the intent of the code much
 more clear (unless one can assume that the people reading the code will now most
@@ -177,7 +177,7 @@ generate an error (the `try` is to make sure don't actually throw an
 error). 
 ```{.R capture_warnings=TRUE}
 try({
-  subset(objectsales, product == codes("Electric drill", product))
+  subset(objectsales, product == codes("Electric drill", cl(product)))
 })
 ```
 Since selecting on labels is a common operation, there is also the `inlabels`

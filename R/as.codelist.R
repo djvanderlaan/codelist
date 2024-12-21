@@ -33,6 +33,11 @@ as.codelist <- function(x, ...) {
   UseMethod("as.codelist")
 }
 
+#' @rdname as.codelist
+#' @export
+as.codelist.codelist <- function(x, ...) {
+  x
+}
 
 #' @rdname as.codelist
 #' @export
