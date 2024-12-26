@@ -62,3 +62,12 @@ expect_equal(x == "A", c(TRUE, FALSE, NA))
 expect_equal(x == c("A", "C", NA), c(TRUE, TRUE, NA))
 expect_equal(x == numeric(0), logical(0))
 
+# Sides of == reversed
+codelist <- data.frame(
+    codes = c(10, 11, 12),
+    labels = c("a", "b", "c")
+  )
+x <- coded(c(10, 12, NA), codelist)
+expect_equal(12 == x, c(FALSE, TRUE, NA))
+expect_error(13 == x)
+
