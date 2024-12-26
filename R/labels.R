@@ -52,7 +52,7 @@ labels.coded <- function(object, missing = TRUE, droplevels = FALSE,
   codelist <- cl_filter(codelist, locale = locale)
   codes <- codelist$code
   labels <- codelist$label
-  ok <- object %in% codes | is.na(object)
+  ok <- as.vector(object) %in% codes | is.na(object)
   if (!all(ok)) {
     wrong <- unique(object[!ok])
     wrong <- paste0("'", wrong, "'")
