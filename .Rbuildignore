@@ -1,6 +1,7 @@
 LICENSE
 work/
 Makefile
+README_source.md
 .git/
 .gitignore
 specs/

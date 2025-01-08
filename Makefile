@@ -18,4 +18,6 @@ vignettes: build
 install: build
 	R CMD INSTALL `ls work/codelist*.tar.gz | sort | tail -n 1` 
 
+readme:
+	R -e 'library(simplermarkdown);options(md_formatter=format_copypaste);mdweave("README_source.md", "README.md", cmd2 = "pandoc %1$$s -t gfm -o %2$$s %3$$.0s")'
 
