@@ -14,7 +14,7 @@
 #' codes.
 #'
 #' @param filter_codelist if \code{TRUE} codes with a level lower than the lever
-#' cast to will be removes from the codelist that is returned with the result. 
+#' cast to will be removed from the code list that is returned with the result. 
 #'
 #' @details
 #' When handling codes that are in a higher level than the level that is cast

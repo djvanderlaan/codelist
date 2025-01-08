@@ -37,13 +37,6 @@ labels and descriptions. The 'missing' column indicates whether or not the code
 should be treated as a missing value. This column should be interpretable as a
 logical column.
 
-Note that, although code lists can contain a 'parent' column, the current
-version of the `codelist` package does not contain any functionality yet to work
-with these hierarchies. This could for example be used to select all records
-whose codes fall in the 'Toys' domain, or to aggregate the data to the top level
-domains. Expect functionality like this in future versions of the package.
-
-
 We will also load and example data set using the codes we loaded above:
 ```{.R #ex10}
 data(objectsales)
@@ -215,6 +208,48 @@ label:
 objectsales$product[10] <- as.label("Electric Drill")
 objectsales$product[1:10] 
 ```
+
+### Hierarchies
+
+Each code can have parent code. With this a simple hierarchy can be defined. At
+the top of the hierarchy are the codes without parent (`NA`). This is level 0.
+Codes with a parent in level 0 are in level 1 etc.  Note that level 0 is a
+higher level than level 1.  The example code list `objectcodes` has two levels:
+
+```{.R #hierarchies1}
+cl_nlevels(objectcodes)
+```
+
+```{.R #hierarchies2}
+cl_levels(objectcodes)
+```
+
+These levels can be used to 'cast' the codes to a higher level:
+```{.R #hierarchies3}
+objectsales$group <- levelcast(objectsales$product, 0)
+head(objectsales)
+```
+
+This is, for example, useful to create aggregates at higher levels. For example,
+we can calculate the total number of toys and tools sold:
+
+```{.R #hierarchies3}
+aggregate(objectsales[c("quantity", "totalprice")], 
+  objectsales[c("group")], sum)
+```
+
+Note that by default the code list of the vector returned by `levelcast` will be
+modified to only contain the codes in the higher hierarchy (this can be
+suppressed using the `filter_codelist = FALSE` argument):
+
+```{.R #hierarchies4}
+cl(objectsales$group)
+```
+
+Also, when the data contains codes from different levels, trying to cast to a
+level lower than that some of the codes in the vector will result by default in
+an error. This can be controlled with the `over_level` argument.
+
 
 ### Safety
 

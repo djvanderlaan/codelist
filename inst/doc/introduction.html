@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -149,26 +149,26 @@ color : black;
 set that used codes from that code list. We will start by demonstrating
 how the package works using this example code list.</p>
 <p>Let’s load the example code list:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(codelist)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">data</span>(objectcodes)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectcodes</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   code                  label parent locale missing</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     A                   Toys   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN       <span class="dv">0</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     B                  Tools   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN       <span class="dv">0</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   A01             Teddy Bear      A     EN       <span class="dv">0</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   A02                Toy Car      A     EN       <span class="dv">0</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   A03                Marbles      A     EN       <span class="dv">0</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   B01                 Hammer      B     EN       <span class="dv">0</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>   B02         Electric Drill      B     EN       <span class="dv">0</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     A              Speelgoed   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL       <span class="dv">0</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>     B            Gereedschap   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL       <span class="dv">0</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>  A01              Teddybeer      A     NL       <span class="dv">0</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span>  A02          Speelgoedauto      A     NL       <span class="dv">0</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>  A03               Knikkers      A     NL       <span class="dv">0</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span>  B01                  Hamer      B     NL       <span class="dv">0</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span>  B02            Boormachine      B     NL       <span class="dv">0</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>    X         Unknown object   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN       <span class="dv">1</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span>    X Onbekend type voorwerp   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL       <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="load"><pre class="sourceCode R"><code class="sourceCode r"><span id="load-1"><a href="#load-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(codelist)</span>
+<span id="load-2"><a href="#load-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">data</span>(objectcodes)</span>
+<span id="load-3"><a href="#load-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectcodes</span>
+<span id="load-4"><a href="#load-4" aria-hidden="true" tabindex="-1"></a>   code                  label parent locale missing</span>
+<span id="load-5"><a href="#load-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     A                   Toys   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN       <span class="dv">0</span></span>
+<span id="load-6"><a href="#load-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     B                  Tools   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN       <span class="dv">0</span></span>
+<span id="load-7"><a href="#load-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   A01             Teddy Bear      A     EN       <span class="dv">0</span></span>
+<span id="load-8"><a href="#load-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   A02                Toy Car      A     EN       <span class="dv">0</span></span>
+<span id="load-9"><a href="#load-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   A03                Marbles      A     EN       <span class="dv">0</span></span>
+<span id="load-10"><a href="#load-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   B01                 Hammer      B     EN       <span class="dv">0</span></span>
+<span id="load-11"><a href="#load-11" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>   B02         Electric Drill      B     EN       <span class="dv">0</span></span>
+<span id="load-12"><a href="#load-12" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     A              Speelgoed   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL       <span class="dv">0</span></span>
+<span id="load-13"><a href="#load-13" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>     B            Gereedschap   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL       <span class="dv">0</span></span>
+<span id="load-14"><a href="#load-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>  A01              Teddybeer      A     NL       <span class="dv">0</span></span>
+<span id="load-15"><a href="#load-15" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span>  A02          Speelgoedauto      A     NL       <span class="dv">0</span></span>
+<span id="load-16"><a href="#load-16" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>  A03               Knikkers      A     NL       <span class="dv">0</span></span>
+<span id="load-17"><a href="#load-17" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span>  B01                  Hamer      B     NL       <span class="dv">0</span></span>
+<span id="load-18"><a href="#load-18" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span>  B02            Boormachine      B     NL       <span class="dv">0</span></span>
+<span id="load-19"><a href="#load-19" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>    X         Unknown object   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN       <span class="dv">1</span></span>
+<span id="load-20"><a href="#load-20" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span>    X Onbekend type voorwerp   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL       <span class="dv">1</span></span></code></pre></div>
 <p>We see that the code list contains codes for encoding various types
 of objects. A code list contains at the minimum a ‘code’ and ‘label’
 column. The ‘code’ column can be any type; the ‘label’ column should be
@@ -181,263 +181,306 @@ translations as here, but could also be used for different versions of
 the labels and descriptions. The ‘missing’ column indicates whether or
 not the code should be treated as a missing value. This column should be
 interpretable as a logical column.</p>
-<p>Note that, although code lists can contain a ‘parent’ column, the
-current version of the <code>codelist</code> package does not contain
-any functionality yet to work with these hierarchies. This could for
-example be used to select all records whose codes fall in the ‘Toys’
-domain, or to aggregate the data to the top level domains. Expect
-functionality like this in future versions of the package.</p>
 <p>We will also load and example data set using the codes we loaded
 above:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">data</span>(objectsales)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  product unitprice quantity totalprice</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     B01     <span class="fl">70.65</span>       <span class="dv">67</span>    <span class="fl">4733.55</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     B01     <span class="fl">76.93</span>       <span class="dv">76</span>    <span class="fl">5846.68</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     B01     <span class="fl">43.49</span>      <span class="dv">100</span>    <span class="fl">4349.00</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     A03      <span class="fl">3.08</span>       <span class="dv">26</span>      <span class="fl">80.08</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     A01     <span class="fl">18.51</span>       <span class="dv">89</span>    <span class="fl">1647.39</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>     A03      <span class="fl">3.35</span>       <span class="dv">71</span>     <span class="fl">237.85</span></span></code></pre></div>
+<div class="sourceCode" id="ex10"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex10-1"><a href="#ex10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">data</span>(objectsales)</span>
+<span id="ex10-2"><a href="#ex10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="ex10-3"><a href="#ex10-3" aria-hidden="true" tabindex="-1"></a>  product unitprice quantity totalprice</span>
+<span id="ex10-4"><a href="#ex10-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     B01     <span class="fl">70.65</span>       <span class="dv">67</span>    <span class="fl">4733.55</span></span>
+<span id="ex10-5"><a href="#ex10-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     B01     <span class="fl">76.93</span>       <span class="dv">76</span>    <span class="fl">5846.68</span></span>
+<span id="ex10-6"><a href="#ex10-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     B01     <span class="fl">43.49</span>      <span class="dv">100</span>    <span class="fl">4349.00</span></span>
+<span id="ex10-7"><a href="#ex10-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     A03      <span class="fl">3.08</span>       <span class="dv">26</span>      <span class="fl">80.08</span></span>
+<span id="ex10-8"><a href="#ex10-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     A01     <span class="fl">18.51</span>       <span class="dv">89</span>    <span class="fl">1647.39</span></span>
+<span id="ex10-9"><a href="#ex10-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>     A03      <span class="fl">3.35</span>       <span class="dv">71</span>     <span class="fl">237.85</span></span></code></pre></div>
 <p>This is a data set containing the prices and sales of various
 products. The ‘product’ column uses codes from the
 <code>objectcodes</code> code list:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;B01&quot;</span> <span class="st">&quot;B01&quot;</span> <span class="st">&quot;B01&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;A01&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;B01&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;A01&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="ex20"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex20-1"><a href="#ex20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="ex20-2"><a href="#ex20-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="st">&quot;B01&quot;</span> <span class="st">&quot;B01&quot;</span> <span class="st">&quot;B01&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;A01&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;B01&quot;</span> <span class="st">&quot;A03&quot;</span> <span class="st">&quot;A01&quot;</span></span></code></pre></div>
 <p>One of the things we can do is convert the codes to their
 corresponding labels:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">label</span>(objectsales<span class="sc">$</span>product, objectcodes) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] Hammer     Hammer     Hammer     Marbles    Teddy Bear Marbles   </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] Marbles    Hammer     Marbles    Teddy Bear</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> Toys Tools Teddy Bear Toy Car Marbles Hammer Electric Drill</span></code></pre></div>
-<p>The <code>label</code> function accepts a vector with codes and a
+<div class="sourceCode" id="ex30"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex30-1"><a href="#ex30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">to_labels</span>(objectsales<span class="sc">$</span>product, objectcodes) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="ex30-2"><a href="#ex30-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] Hammer     Hammer     Hammer     Marbles    Teddy Bear Marbles   </span>
+<span id="ex30-3"><a href="#ex30-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] Marbles    Hammer     Marbles    Teddy Bear</span>
+<span id="ex30-4"><a href="#ex30-4" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> Toys Tools Teddy Bear Toy Car Marbles Hammer Electric Drill</span></code></pre></div>
+<p>The <code>to_labels</code> function accepts a vector with codes and a
 <code>codelist</code> for this vector. It can get a bit tiresome to keep
 having to pass in the <code>codelist</code> attribute. If it is missing,
 the looks for a ‘codelist’ attribute:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">attr</span>(objectsales<span class="sc">$</span>product, <span class="st">&quot;codelist&quot;</span>) <span class="ot">&lt;-</span> objectcodes</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">label</span>(objectsales<span class="sc">$</span>product) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] Hammer     Hammer     Hammer     Marbles    Teddy Bear Marbles   </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] Marbles    Hammer     Marbles    Teddy Bear</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> Toys Tools Teddy Bear Toy Car Marbles Hammer Electric Drill</span></code></pre></div>
+<div class="sourceCode" id="ex40"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex40-1"><a href="#ex40-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">attr</span>(objectsales<span class="sc">$</span>product, <span class="st">&quot;codelist&quot;</span>) <span class="ot">&lt;-</span> objectcodes</span>
+<span id="ex40-2"><a href="#ex40-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">to_labels</span>(objectsales<span class="sc">$</span>product) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="ex40-3"><a href="#ex40-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] Hammer     Hammer     Hammer     Marbles    Teddy Bear Marbles   </span>
+<span id="ex40-4"><a href="#ex40-4" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] Marbles    Hammer     Marbles    Teddy Bear</span>
+<span id="ex40-5"><a href="#ex40-5" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> Toys Tools Teddy Bear Toy Car Marbles Hammer Electric Drill</span></code></pre></div>
 <p>The <code>codelist</code> package also has a <code>coded</code> type.
 Converting to a <code>coded</code> object adds the <code>coded</code>
 class. This will result in some formatting and later on we will see that
 this also ensures that we cannot assign invalid codes to the vector:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product <span class="ot">&lt;-</span> <span class="fu">coded</span>(objectsales<span class="sc">$</span>product, objectcodes)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">label</span>(objectsales<span class="sc">$</span>product) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] Hammer     Hammer     Hammer     Marbles    Teddy Bear Marbles   </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] Marbles    Hammer     Marbles    Teddy Bear</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> Toys Tools Teddy Bear Toy Car Marbles Hammer Electric Drill</span></code></pre></div>
-<p>The <code>label</code> function can be used to get readable output
-from various R-functions:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(<span class="fu">label</span>(objectsales<span class="sc">$</span>product), <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          Toys          Tools     Teddy Bear        Toy Car        Marbles </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>              <span class="dv">0</span>             <span class="dv">29</span>             <span class="dv">14</span>             <span class="dv">16</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        Hammer Electric Drill           <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="dv">30</span>              <span class="dv">2</span>              <span class="dv">9</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tapply</span>(objectsales<span class="sc">$</span>unitprice, <span class="fu">label</span>(objectsales<span class="sc">$</span>product), mean)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          Toys          Tools     Teddy Bear        Toy Car        Marbles </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="cn">NA</span>             <span class="cn">NA</span>      <span class="fl">19.761034</span>      <span class="fl">12.432857</span>       <span class="fl">2.480625</span> </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        Hammer Electric Drill </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>     <span class="fl">45.303000</span>     <span class="fl">205.350000</span> </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lm</span>(unitprice <span class="sc">~</span> <span class="dv">0</span><span class="sc">+</span><span class="fu">label</span>(product), <span class="at">data =</span> objectsales) </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> unitprice <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="fu">label</span>(product), <span class="at">data =</span> objectsales)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">label</span>(product)Teddy Bear         <span class="fu">label</span>(product)Toy Car  </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                      <span class="fl">19.761</span>                        <span class="fl">12.433</span>  </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>       <span class="fu">label</span>(product)Marbles          <span class="fu">label</span>(product)Hammer  </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">2.481</span>                        <span class="fl">45.303</span>  </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">label</span>(product)Electric Drill  </span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                     <span class="fl">205.350</span>  </span></code></pre></div>
+<div class="sourceCode" id="ex50"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex50-1"><a href="#ex50-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product <span class="ot">&lt;-</span> <span class="fu">coded</span>(objectsales<span class="sc">$</span>product, objectcodes)</span>
+<span id="ex50-2"><a href="#ex50-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="ex50-3"><a href="#ex50-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
+<span id="ex50-4"><a href="#ex50-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span>
+<span id="ex50-5"><a href="#ex50-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">to_labels</span>(objectsales<span class="sc">$</span>product) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="ex50-6"><a href="#ex50-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] Hammer     Hammer     Hammer     Marbles    Teddy Bear Marbles   </span>
+<span id="ex50-7"><a href="#ex50-7" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>] Marbles    Hammer     Marbles    Teddy Bear</span>
+<span id="ex50-8"><a href="#ex50-8" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> Toys Tools Teddy Bear Toy Car Marbles Hammer Electric Drill</span></code></pre></div>
+<p>For <code>coded</code> objects there is also the <code>labels</code>
+method:</p>
+<pre><code>labels(objectsales$product) |&gt; head(10)</code></pre>
+<p>The <code>labels</code> method and the <code>to_labels</code>
+function can be used to get readable output from various
+R-functions:</p>
+<div class="sourceCode" id="ex60"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex60-1"><a href="#ex60-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(<span class="fu">labels</span>(objectsales<span class="sc">$</span>product), <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span>
+<span id="ex60-2"><a href="#ex60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="ex60-3"><a href="#ex60-3" aria-hidden="true" tabindex="-1"></a>          Toys          Tools     Teddy Bear        Toy Car        Marbles </span>
+<span id="ex60-4"><a href="#ex60-4" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>              <span class="dv">0</span>             <span class="dv">29</span>             <span class="dv">14</span>             <span class="dv">16</span> </span>
+<span id="ex60-5"><a href="#ex60-5" aria-hidden="true" tabindex="-1"></a>        Hammer Electric Drill           <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
+<span id="ex60-6"><a href="#ex60-6" aria-hidden="true" tabindex="-1"></a>            <span class="dv">30</span>              <span class="dv">2</span>              <span class="dv">9</span> </span>
+<span id="ex60-7"><a href="#ex60-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tapply</span>(objectsales<span class="sc">$</span>unitprice, <span class="fu">labels</span>(objectsales<span class="sc">$</span>product), mean)</span>
+<span id="ex60-8"><a href="#ex60-8" aria-hidden="true" tabindex="-1"></a>          Toys          Tools     Teddy Bear        Toy Car        Marbles </span>
+<span id="ex60-9"><a href="#ex60-9" aria-hidden="true" tabindex="-1"></a>            <span class="cn">NA</span>             <span class="cn">NA</span>      <span class="fl">19.761034</span>      <span class="fl">12.432857</span>       <span class="fl">2.480625</span> </span>
+<span id="ex60-10"><a href="#ex60-10" aria-hidden="true" tabindex="-1"></a>        Hammer Electric Drill </span>
+<span id="ex60-11"><a href="#ex60-11" aria-hidden="true" tabindex="-1"></a>     <span class="fl">45.303000</span>     <span class="fl">205.350000</span> </span>
+<span id="ex60-12"><a href="#ex60-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">lm</span>(unitprice <span class="sc">~</span> <span class="dv">0</span><span class="sc">+</span><span class="fu">labels</span>(product), <span class="at">data =</span> objectsales) </span>
+<span id="ex60-13"><a href="#ex60-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="ex60-14"><a href="#ex60-14" aria-hidden="true" tabindex="-1"></a>Call<span class="sc">:</span></span>
+<span id="ex60-15"><a href="#ex60-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> unitprice <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="fu">labels</span>(product), <span class="at">data =</span> objectsales)</span>
+<span id="ex60-16"><a href="#ex60-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="ex60-17"><a href="#ex60-17" aria-hidden="true" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
+<span id="ex60-18"><a href="#ex60-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labels</span>(product)Teddy Bear         <span class="fu">labels</span>(product)Toy Car  </span>
+<span id="ex60-19"><a href="#ex60-19" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">19.761</span>                         <span class="fl">12.433</span>  </span>
+<span id="ex60-20"><a href="#ex60-20" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labels</span>(product)Marbles          <span class="fu">labels</span>(product)Hammer  </span>
+<span id="ex60-21"><a href="#ex60-21" aria-hidden="true" tabindex="-1"></a>                        <span class="fl">2.481</span>                         <span class="fl">45.303</span>  </span>
+<span id="ex60-22"><a href="#ex60-22" aria-hidden="true" tabindex="-1"></a><span class="fu">labels</span>(product)Electric Drill  </span>
+<span id="ex60-23"><a href="#ex60-23" aria-hidden="true" tabindex="-1"></a>                      <span class="fl">205.350</span>  </span></code></pre></div>
 <p>By default codes that are considered missing are converted to
 <code>NA</code> when converting to labels. This can be prevented by
-setting the <code>missing</code> argument to <code>TRUE</code> or by
-using the <code>labelm</code> function:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(<span class="fu">labelm</span>(objectsales<span class="sc">$</span>product), <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          Toys          Tools     Teddy Bear        Toy Car        Marbles </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>              <span class="dv">0</span>             <span class="dv">29</span>             <span class="dv">14</span>             <span class="dv">16</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        Hammer Electric Drill Unknown object           <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="dv">30</span>              <span class="dv">2</span>              <span class="dv">5</span>              <span class="dv">4</span> </span></code></pre></div>
+setting the <code>missing</code> argument to <code>FALSE</code>:</p>
+<div class="sourceCode" id="ex70"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex70-1"><a href="#ex70-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(<span class="fu">labels</span>(objectsales<span class="sc">$</span>product, <span class="cn">FALSE</span>), <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span>
+<span id="ex70-2"><a href="#ex70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="ex70-3"><a href="#ex70-3" aria-hidden="true" tabindex="-1"></a>          Toys          Tools     Teddy Bear        Toy Car        Marbles </span>
+<span id="ex70-4"><a href="#ex70-4" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>              <span class="dv">0</span>             <span class="dv">29</span>             <span class="dv">14</span>             <span class="dv">16</span> </span>
+<span id="ex70-5"><a href="#ex70-5" aria-hidden="true" tabindex="-1"></a>        Hammer Electric Drill Unknown object           <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
+<span id="ex70-6"><a href="#ex70-6" aria-hidden="true" tabindex="-1"></a>            <span class="dv">30</span>              <span class="dv">2</span>              <span class="dv">5</span>              <span class="dv">4</span> </span></code></pre></div>
 <p>The <code>droplevels</code> removes unused codes from the levels of
 the generated factor vector:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(<span class="fu">labelm</span>(objectsales<span class="sc">$</span>product, <span class="at">droplevels =</span> <span class="cn">TRUE</span>), <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Teddy Bear        Toy Car        Marbles         Hammer Electric Drill </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="dv">29</span>             <span class="dv">14</span>             <span class="dv">16</span>             <span class="dv">30</span>              <span class="dv">2</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Unknown object           <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>             <span class="dv">5</span>              <span class="dv">4</span> </span></code></pre></div>
+<div class="sourceCode" id="ex80"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex80-1"><a href="#ex80-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(<span class="fu">labels</span>(objectsales<span class="sc">$</span>product, <span class="at">droplevels =</span> <span class="cn">TRUE</span>), <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span>
+<span id="ex80-2"><a href="#ex80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="ex80-3"><a href="#ex80-3" aria-hidden="true" tabindex="-1"></a>    Teddy Bear        Toy Car        Marbles         Hammer Electric Drill </span>
+<span id="ex80-4"><a href="#ex80-4" aria-hidden="true" tabindex="-1"></a>            <span class="dv">29</span>             <span class="dv">14</span>             <span class="dv">16</span>             <span class="dv">30</span>              <span class="dv">2</span> </span>
+<span id="ex80-5"><a href="#ex80-5" aria-hidden="true" tabindex="-1"></a>          <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> </span>
+<span id="ex80-6"><a href="#ex80-6" aria-hidden="true" tabindex="-1"></a>             <span class="dv">9</span> </span></code></pre></div>
 <h3 id="locale">Locale</h3>
 <p>Using the ‘locale’ column of the code list it is possible to specify
 different versions of for the labels and descriptions. This can be used
 the specify different translations as in this example, but can also be
 used to specify different versions, for example, long and short labels.
 By default all methods will use the first locale in the code list as the
-defalult locale; the locale returned by the <code>cllocale</code>
+defalult locale; the locale returned by the <code>cl_locale</code>
 function:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cllocale</span>(objectcodes)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;EN&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="ex90"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex90-1"><a href="#ex90-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cl_locale</span>(objectcodes)</span>
+<span id="ex90-2"><a href="#ex90-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;EN&quot;</span></span></code></pre></div>
 <p>Most methods also have a <code>locale</code> argument with which it
 is possible to specify the preferred locale (the default is used when
 the preferred locale is not present). For example:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">label</span>(objectsales<span class="sc">$</span>product, <span class="at">locale =</span> <span class="st">&quot;NL&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] Hamer     Hamer     Hamer     Knikkers  Teddybeer Knikkers </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> Levels<span class="sc">:</span> Speelgoed Gereedschap Teddybeer Speelgoedauto Knikkers ... Boormachine</span></code></pre></div>
+<div class="sourceCode" id="ex100"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex100-1"><a href="#ex100-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">labels</span>(objectsales<span class="sc">$</span>product, <span class="at">locale =</span> <span class="st">&quot;NL&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="ex100-2"><a href="#ex100-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] Hamer     Hamer     Hamer     Knikkers  Teddybeer Knikkers </span>
+<span id="ex100-3"><a href="#ex100-3" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> Levels<span class="sc">:</span> Speelgoed Gereedschap Teddybeer Speelgoedauto Knikkers ... Boormachine</span></code></pre></div>
 <p>It can become tedious having to specify the locale for each function
-call. The <code>cllocale</code> will look at the <code>CLLOCALE</code>
+call. The <code>cl_locale</code> will look at the <code>CLLOCALE</code>
 option, when present, to get the preferred locale. Therefore, to set a
 default preferred locale:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> op <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">CLLOCALE =</span> <span class="st">&quot;NL&quot;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cllocale</span>(objectcodes)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;NL&quot;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tapply</span>(objectsales<span class="sc">$</span>unitprice, <span class="fu">label</span>(objectsales<span class="sc">$</span>product), mean)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    Speelgoed   Gereedschap     Teddybeer Speelgoedauto      Knikkers </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>           <span class="cn">NA</span>            <span class="cn">NA</span>     <span class="fl">19.761034</span>     <span class="fl">12.432857</span>      <span class="fl">2.480625</span> </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        Hamer   Boormachine </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">45.303000</span>    <span class="fl">205.350000</span> </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Set the locale back to the original value (unset)</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">options</span>(op)</span></code></pre></div>
+<div class="sourceCode" id="ex110"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex110-1"><a href="#ex110-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> op <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">CLLOCALE =</span> <span class="st">&quot;NL&quot;</span>)</span>
+<span id="ex110-2"><a href="#ex110-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cl_locale</span>(objectcodes)</span>
+<span id="ex110-3"><a href="#ex110-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;NL&quot;</span></span>
+<span id="ex110-4"><a href="#ex110-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tapply</span>(objectsales<span class="sc">$</span>unitprice, <span class="fu">labels</span>(objectsales<span class="sc">$</span>product), mean)</span>
+<span id="ex110-5"><a href="#ex110-5" aria-hidden="true" tabindex="-1"></a>    Speelgoed   Gereedschap     Teddybeer Speelgoedauto      Knikkers </span>
+<span id="ex110-6"><a href="#ex110-6" aria-hidden="true" tabindex="-1"></a>           <span class="cn">NA</span>            <span class="cn">NA</span>     <span class="fl">19.761034</span>     <span class="fl">12.432857</span>      <span class="fl">2.480625</span> </span>
+<span id="ex110-7"><a href="#ex110-7" aria-hidden="true" tabindex="-1"></a>        Hamer   Boormachine </span>
+<span id="ex110-8"><a href="#ex110-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">45.303000</span>    <span class="fl">205.350000</span> </span>
+<span id="ex110-9"><a href="#ex110-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Set the locale back to the original value (unset)</span></span>
+<span id="ex110-10"><a href="#ex110-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">options</span>(op)</span></code></pre></div>
 <h3 id="looking-up-codes-based-on-label">Looking up codes based on
 label</h3>
-<p>Using the <code>code</code> function it is possible to look up the
+<p>Using the <code>codes</code> function it is possible to look up the
 codes based on a set of labels. For example, below we look up the code
 for ‘Hammer’:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">code</span>(<span class="st">&quot;Hammer&quot;</span>, objectcodes)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;B01&quot;</span></span></code></pre></div>
-<p>It is also possible to pass in the variable (an object with a
-<code>codelist</code> attribute) instead of the code list itself:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">code</span>(<span class="st">&quot;Hammer&quot;</span>, objectsales<span class="sc">$</span>product)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;B01&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="ex120"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex120-1"><a href="#ex120-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">codes</span>(<span class="st">&quot;Hammer&quot;</span>, objectcodes)</span>
+<span id="ex120-2"><a href="#ex120-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;B01&quot;</span></span></code></pre></div>
+<p>or getting the code list form the relevant variable itself using the
+<code>cl</code> method that returns the code list of the variable:</p>
+<div class="sourceCode" id="ex130"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex130-1"><a href="#ex130-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">codes</span>(<span class="st">&quot;Hammer&quot;</span>, <span class="fu">cl</span>(objectsales<span class="sc">$</span>product))</span>
+<span id="ex130-2"><a href="#ex130-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;B01&quot;</span></span></code></pre></div>
 <p>This could be used to make selections. For example, instead of</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="st">&quot;B02&quot;</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
+<div class="sourceCode" id="ex140"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex140-1"><a href="#ex140-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="st">&quot;B02&quot;</span>)</span>
+<span id="ex140-2"><a href="#ex140-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
+<span id="ex140-3"><a href="#ex140-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
+<span id="ex140-4"><a href="#ex140-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
 <p>one can do</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="fu">code</span>(<span class="st">&quot;Electric Drill&quot;</span>, product))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
+<div class="sourceCode" id="ex150"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex150-1"><a href="#ex150-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="fu">codes</span>(<span class="st">&quot;Electric Drill&quot;</span>, <span class="fu">cl</span>(product)))</span>
+<span id="ex150-2"><a href="#ex150-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
+<span id="ex150-3"><a href="#ex150-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
+<span id="ex150-4"><a href="#ex150-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
 <p>In general the latter is more readable and makes the intent of the
 code much more clear (unless one can assume that the people reading the
 code will now most of the product codes).</p>
 <p>When comparing a <code>coded</code> object to labels, it is also
-possible to use the <code>lab</code> function. This will add the class
-“label” to the character vector. The comparison operator will then first
-call the <code>code</code> function on the label:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;Electric Drill&quot;</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
+possible to use the <code>as.label</code> function. This will add the
+class “label” to the character vector. The comparison operator will then
+first call the <code>codes</code> function on the label:</p>
+<div class="sourceCode" id="ex160"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex160-1"><a href="#ex160-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="fu">as.label</span>(<span class="st">&quot;Electric Drill&quot;</span>))</span>
+<span id="ex160-2"><a href="#ex160-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
+<span id="ex160-3"><a href="#ex160-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
+<span id="ex160-4"><a href="#ex160-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
 <p>This only works for the equal-to and not-equal-to operators.</p>
 <p>Selecting this way has an advantage over selecting records based on
 character vectors or factor vectors. For example we could also have done
 the following:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, <span class="fu">label</span>(product) <span class="sc">==</span> <span class="st">&quot;Electric Drill&quot;</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
+<div class="sourceCode" id="ex170"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex170-1"><a href="#ex170-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, <span class="fu">labels</span>(product) <span class="sc">==</span> <span class="st">&quot;Electric Drill&quot;</span>)</span>
+<span id="ex170-2"><a href="#ex170-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
+<span id="ex170-3"><a href="#ex170-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
+<span id="ex170-4"><a href="#ex170-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
 <p>However, a small, difficult to spot, spelling mistake would have
 resulted in:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, <span class="fu">label</span>(product) <span class="sc">==</span> <span class="st">&quot;Electric drll&quot;</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] product    unitprice  quantity   totalprice</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="dv">0</span> rows<span class="sc">&gt;</span> (or <span class="dv">0</span><span class="sc">-</span>length row.names)</span></code></pre></div>
+<div class="sourceCode" id="ex180"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex180-1"><a href="#ex180-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, <span class="fu">labels</span>(product) <span class="sc">==</span> <span class="st">&quot;Electric drll&quot;</span>)</span>
+<span id="ex180-2"><a href="#ex180-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] product    unitprice  quantity   totalprice</span>
+<span id="ex180-3"><a href="#ex180-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="dv">0</span> rows<span class="sc">&gt;</span> (or <span class="dv">0</span><span class="sc">-</span>length row.names)</span></code></pre></div>
 <p>And we could have believed that no electric drills were sold. The
-<code>code</code> function will also check if the provided labels are
+<code>codes</code> function will also check if the provided labels are
 valid and if not will generate an error (the <code>try</code> is to make
 sure don’t actually throw an error).</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="fu">code</span>(<span class="st">&quot;Electric drill&quot;</span>, product))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(<span class="st">&quot;Electric drill&quot;</span>, product) <span class="sc">:</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
+<div class="sourceCode" id="ex190"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex190-1"><a href="#ex190-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
+<span id="ex190-2"><a href="#ex190-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">subset</span>(objectsales, product <span class="sc">==</span> <span class="fu">codes</span>(<span class="st">&quot;Electric drill&quot;</span>, <span class="fu">cl</span>(product)))</span>
+<span id="ex190-3"><a href="#ex190-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
+<span id="ex190-4"><a href="#ex190-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">codes.default</span>(<span class="st">&quot;Electric drill&quot;</span>, <span class="fu">cl</span>(product)) <span class="sc">:</span> </span>
+<span id="ex190-5"><a href="#ex190-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
 <p>Since selecting on labels is a common operation, there is also the
-<code>inlabels</code> function that will return a logical vector
+<code>in_labels</code> function that will return a logical vector
 indicating whether or not a code has a label in the given set:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, <span class="fu">inlabels</span>(product, <span class="st">&quot;Electric Drill&quot;</span>))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
+<div class="sourceCode" id="ex200"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex200-1"><a href="#ex200-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">subset</span>(objectsales, <span class="fu">in_labels</span>(product, <span class="st">&quot;Electric Drill&quot;</span>))</span>
+<span id="ex200-2"><a href="#ex200-2" aria-hidden="true" tabindex="-1"></a>         product unitprice quantity totalprice</span>
+<span id="ex200-3"><a href="#ex200-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> B02[Electri…]    <span class="fl">284.85</span>       <span class="dv">52</span>   <span class="fl">14812.20</span></span>
+<span id="ex200-4"><a href="#ex200-4" aria-hidden="true" tabindex="-1"></a><span class="dv">73</span> B02[Electri…]    <span class="fl">125.85</span>       <span class="dv">73</span>    <span class="fl">9187.05</span></span></code></pre></div>
 <p>This function will of course also generate an error in case of
 invalid codes.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">subset</span>(objectsales, <span class="fu">inlabels</span>(product, <span class="st">&quot;Electric drill&quot;</span>))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(labels, codelist) <span class="sc">:</span> </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
+<div class="sourceCode" id="ex210"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex210-1"><a href="#ex210-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
+<span id="ex210-2"><a href="#ex210-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">subset</span>(objectsales, <span class="fu">in_labels</span>(product, <span class="st">&quot;Electric drill&quot;</span>))</span>
+<span id="ex210-3"><a href="#ex210-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
+<span id="ex210-4"><a href="#ex210-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">codes.default</span>(labels, codelist) <span class="sc">:</span> </span>
+<span id="ex210-5"><a href="#ex210-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
 <p>In the examples above we used the base function <code>subset</code>,
 but this will of course also work within <code>data.tables</code> and
 the <code>filter</code> methods from <code>dplyr</code>.</p>
 <h3 id="assignment-of-codes">Assignment of codes</h3>
 <p>When the vector with codes is transformed to a <code>coded</code>
 object, it can of course also be assigned to:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;A01&quot;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
-<p>Here the <code>code</code> function can also be of use (again, an
+<div class="sourceCode" id="ex220"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex220-1"><a href="#ex220-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;A01&quot;</span></span>
+<span id="ex220-2"><a href="#ex220-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
+<span id="ex220-3"><a href="#ex220-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
+<span id="ex220-4"><a href="#ex220-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
+<p>Here the <code>codes</code> function can also be of use (again, an
 invalid label will result in an error so this is a safe operation):</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">code</span>(<span class="st">&quot;Teddy Bear&quot;</span>, objectcodes)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
-<p>Another option is to use the <code>lab</code> function which labels a
-character vector as a label:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">lab</span>(<span class="st">&quot;Electric Drill&quot;</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 B02</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
+<div class="sourceCode" id="ex230"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex230-1"><a href="#ex230-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">codes</span>(<span class="st">&quot;Teddy Bear&quot;</span>, objectcodes)</span>
+<span id="ex230-2"><a href="#ex230-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
+<span id="ex230-3"><a href="#ex230-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 A01</span>
+<span id="ex230-4"><a href="#ex230-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
+<p>Another option is to use the <code>as.label</code> function which
+labels a character vector as a label:</p>
+<div class="sourceCode" id="ex240"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex240-1"><a href="#ex240-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">as.label</span>(<span class="st">&quot;Electric Drill&quot;</span>)</span>
+<span id="ex240-2"><a href="#ex240-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span>
+<span id="ex240-3"><a href="#ex240-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] B01 B01 B01 A03 A01 A03 A03 B01 A03 B02</span>
+<span id="ex240-4"><a href="#ex240-4" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> Codelist<span class="sc">:</span> <span class="fu">A</span>(<span class="ot">=</span>Toys) <span class="fu">B</span>(<span class="ot">=</span>Tools) <span class="fu">A01</span>(<span class="ot">=</span>Teddy Bear) <span class="fu">A02</span>(<span class="ot">=</span>Toy Car) <span class="fu">...X</span>(<span class="ot">=</span>Unknown object)</span></code></pre></div>
+<h3 id="hierarchies">Hierarchies</h3>
+<p>Each code can have parent code. With this a simple hierarchy can be
+defined. At the top of the hierarchy are the codes without parent
+(<code>NA</code>). This is level 0. Codes with a parent in level 0 are
+in level 1 etc. Note that level 0 is a higher level than level 1. The
+example code list <code>objectcodes</code> has two levels:</p>
+<div class="sourceCode" id="hierarchies1"><pre class="sourceCode R"><code class="sourceCode r"><span id="hierarchies1-1"><a href="#hierarchies1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cl_nlevels</span>(objectcodes)</span>
+<span id="hierarchies1-2"><a href="#hierarchies1-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="hierarchies2"><pre class="sourceCode R"><code class="sourceCode r"><span id="hierarchies2-1"><a href="#hierarchies2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cl_levels</span>(objectcodes)</span>
+<span id="hierarchies2-2"><a href="#hierarchies2-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span></span></code></pre></div>
+<p>These levels can be used to ‘cast’ the codes to a higher level:</p>
+<div class="sourceCode" id="hierarchies3"><pre class="sourceCode R"><code class="sourceCode r"><span id="hierarchies3-1"><a href="#hierarchies3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">levelcast</span>(objectsales<span class="sc">$</span>product, <span class="dv">0</span>)</span>
+<span id="hierarchies3-2"><a href="#hierarchies3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(objectsales)</span>
+<span id="hierarchies3-3"><a href="#hierarchies3-3" aria-hidden="true" tabindex="-1"></a>        product unitprice quantity totalprice    group</span>
+<span id="hierarchies3-4"><a href="#hierarchies3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> B01[Hammer]       <span class="fl">70.65</span>       <span class="dv">67</span>    <span class="fl">4733.55</span> B[Tools]</span>
+<span id="hierarchies3-5"><a href="#hierarchies3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> B01[Hammer]       <span class="fl">76.93</span>       <span class="dv">76</span>    <span class="fl">5846.68</span> B[Tools]</span>
+<span id="hierarchies3-6"><a href="#hierarchies3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> B01[Hammer]       <span class="fl">43.49</span>      <span class="dv">100</span>    <span class="fl">4349.00</span> B[Tools]</span>
+<span id="hierarchies3-7"><a href="#hierarchies3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> A03[Marbles]       <span class="fl">3.08</span>       <span class="dv">26</span>      <span class="fl">80.08</span> A[Toys] </span>
+<span id="hierarchies3-8"><a href="#hierarchies3-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> A01[Teddy B…]     <span class="fl">18.51</span>       <span class="dv">89</span>    <span class="fl">1647.39</span> A[Toys] </span>
+<span id="hierarchies3-9"><a href="#hierarchies3-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> A03[Marbles]       <span class="fl">3.35</span>       <span class="dv">71</span>     <span class="fl">237.85</span> A[Toys] </span></code></pre></div>
+<p>This is, for example, useful to create aggregates at higher levels.
+For example, we can calculate the total number of toys and tools
+sold:</p>
+<div class="sourceCode" id="hierarchies3"><pre class="sourceCode R"><code class="sourceCode r"><span id="hierarchies3-1"><a href="#hierarchies3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">aggregate</span>(objectsales[<span class="fu">c</span>(<span class="st">&quot;quantity&quot;</span>, <span class="st">&quot;totalprice&quot;</span>)], </span>
+<span id="hierarchies3-2"><a href="#hierarchies3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales[<span class="fu">c</span>(<span class="st">&quot;group&quot;</span>)], sum)</span>
+<span id="hierarchies3-3"><a href="#hierarchies3-3" aria-hidden="true" tabindex="-1"></a>        group quantity totalprice</span>
+<span id="hierarchies3-4"><a href="#hierarchies3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> A[Toys]         <span class="dv">3274</span>   <span class="fl">43918.09</span></span>
+<span id="hierarchies3-5"><a href="#hierarchies3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> B[Tools]        <span class="dv">1829</span>  <span class="fl">103011.65</span></span>
+<span id="hierarchies3-6"><a href="#hierarchies3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> X[Unknown…]      <span class="dv">308</span>   <span class="fl">18184.42</span></span></code></pre></div>
+<p>Note that by default the code list of the vector returned by
+<code>levelcast</code> will be modified to only contain the codes in the
+higher hierarchy (this can be suppressed using the
+<code>filter_codelist = FALSE</code> argument):</p>
+<div class="sourceCode" id="hierarchies4"><pre class="sourceCode R"><code class="sourceCode r"><span id="hierarchies4-1"><a href="#hierarchies4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">cl</span>(objectsales<span class="sc">$</span>group)</span>
+<span id="hierarchies4-2"><a href="#hierarchies4-2" aria-hidden="true" tabindex="-1"></a>   code                  label parent locale missing</span>
+<span id="hierarchies4-3"><a href="#hierarchies4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     A                   Toys   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN   <span class="cn">FALSE</span></span>
+<span id="hierarchies4-4"><a href="#hierarchies4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     B                  Tools   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN   <span class="cn">FALSE</span></span>
+<span id="hierarchies4-5"><a href="#hierarchies4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>     A              Speelgoed   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL   <span class="cn">FALSE</span></span>
+<span id="hierarchies4-6"><a href="#hierarchies4-6" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>     B            Gereedschap   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL   <span class="cn">FALSE</span></span>
+<span id="hierarchies4-7"><a href="#hierarchies4-7" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>    X         Unknown object   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     EN    <span class="cn">TRUE</span></span>
+<span id="hierarchies4-8"><a href="#hierarchies4-8" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span>    X Onbekend type voorwerp   <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>     NL    <span class="cn">TRUE</span></span></code></pre></div>
+<p>Also, when the data contains codes from different levels, trying to
+cast to a level lower than that some of the codes in the vector will
+result by default in an error. This can be controlled with the
+<code>over_level</code> argument.</p>
 <h3 id="safety">Safety</h3>
 <p>Using a <code>coded</code> vector also has the advantage that the
 codes assigned to will be validated against the code list, generating an
 error when one tries assign an invalid code:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Q&quot;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">[&lt;-.coded</span><span class="st">`</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="dv">10</span>, <span class="at">value =</span> <span class="st">&quot;Q&quot;</span>) <span class="sc">:</span> </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  Invalid codes used <span class="cf">in</span> value.</span></code></pre></div>
+<div class="sourceCode" id="ex250"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex250-1"><a href="#ex250-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
+<span id="ex250-2"><a href="#ex250-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Q&quot;</span></span>
+<span id="ex250-3"><a href="#ex250-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
+<span id="ex250-4"><a href="#ex250-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">[&lt;-.coded</span><span class="st">`</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="dv">10</span>, <span class="at">value =</span> <span class="st">&quot;Q&quot;</span>) <span class="sc">:</span> </span>
+<span id="ex250-5"><a href="#ex250-5" aria-hidden="true" tabindex="-1"></a>  Invalid codes used <span class="cf">in</span> value.</span></code></pre></div>
 <p>This makes a <code>coded</code> object safer to work with than, for
 example, a character of numeric vector with codes (a <code>factor</code>
 vector will also generate a warning for invalid factor levels).</p>
-<p>The <code>code</code> function and the <code>lab</code> function
-(which call the <code>code</code> function) will also generate an
-error:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">lab</span>(<span class="st">&quot;Teddy bear&quot;</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(value, codelist) <span class="sc">:</span> </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
+<p>The <code>codes</code> function and the <code>as.label</code>
+function (which call the <code>codes</code> function) will also generate
+an error:</p>
+<div class="sourceCode" id="ex260"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex260-1"><a href="#ex260-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({</span>
+<span id="ex260-2"><a href="#ex260-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">as.label</span>(<span class="st">&quot;Teddy bear&quot;</span>)</span>
+<span id="ex260-3"><a href="#ex260-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> })</span>
+<span id="ex260-4"><a href="#ex260-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">codes.default</span>(value, codelist) <span class="sc">:</span> </span>
+<span id="ex260-5"><a href="#ex260-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
 <p>Assigning <code>NA</code> will of course still work:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="ex270"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex270-1"><a href="#ex270-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> objectsales<span class="sc">$</span>product[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
 <p>A <code>coded</code> object is safer to work with than a factor
 vector. For example:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">factor</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">coded</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">data.frame</span>(<span class="at">code =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">label =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
+<div class="sourceCode" id="ex280"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex280-1"><a href="#ex280-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">factor</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="ex280-2"><a href="#ex280-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">coded</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">data.frame</span>(<span class="at">code =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">label =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]))</span></code></pre></div>
 <p>Comparing on invalid codes works with a factor while it will generate
 an error for <code>coded</code> objects:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="dv">4</span> })</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="dv">4</span> })</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="dv">4</span>) <span class="sc">:</span> Invalid codes used <span class="cf">in</span> RHS</span></code></pre></div>
+<div class="sourceCode" id="ex290"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex290-1"><a href="#ex290-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="dv">4</span> })</span>
+<span id="ex290-2"><a href="#ex290-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="ex290-3"><a href="#ex290-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="dv">4</span> })</span>
+<span id="ex290-4"><a href="#ex290-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="dv">4</span>) <span class="sc">:</span> Invalid codes used <span class="cf">in</span> RHS</span></code></pre></div>
 <p>The same holds when comparing on labels:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="st">&quot;foobar&quot;</span> })</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="ex300"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex300-1"><a href="#ex300-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ x <span class="sc">==</span> <span class="st">&quot;foobar&quot;</span> })</span>
+<span id="ex300-2"><a href="#ex300-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
 <p>A <code>coded</code> cannot directly be compared on a label and will
 generate an error even when the label is valid:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="st">&quot;a&quot;</span> })</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="st">&quot;a&quot;</span>) <span class="sc">:</span> </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  RHS not of the same class as the used codes of the LHS.</span></code></pre></div>
-<p>One should use either the <code>code</code> or <code>lab</code>
+<div class="sourceCode" id="ex310"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex310-1"><a href="#ex310-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="st">&quot;a&quot;</span> })</span>
+<span id="ex310-2"><a href="#ex310-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">Ops.coded</span>(y, <span class="st">&quot;a&quot;</span>) <span class="sc">:</span> </span>
+<span id="ex310-3"><a href="#ex310-3" aria-hidden="true" tabindex="-1"></a>  RHS not of the same class as the used codes of the LHS.</span></code></pre></div>
+<p>One should use either the <code>codes</code> or <code>as.label</code>
 function for that:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;a&quot;</span>) })</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">lab</span>(<span class="st">&quot;foobar&quot;</span>) })</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">code</span>(e2, e1) <span class="sc">:</span> Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
+<div class="sourceCode" id="ex320"><pre class="sourceCode R"><code class="sourceCode r"><span id="ex320-1"><a href="#ex320-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">as.label</span>(<span class="st">&quot;a&quot;</span>) })</span>
+<span id="ex320-2"><a href="#ex320-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="ex320-3"><a href="#ex320-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">try</span>({ y <span class="sc">==</span> <span class="fu">as.label</span>(<span class="st">&quot;foobar&quot;</span>) })</span>
+<span id="ex320-4"><a href="#ex320-4" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">codes.default</span>(e2, <span class="fu">cl</span>(e1)) <span class="sc">:</span> </span>
+<span id="ex320-5"><a href="#ex320-5" aria-hidden="true" tabindex="-1"></a>  Labels not present <span class="cf">in</span> codelist <span class="cf">in</span> current locale.</span></code></pre></div>
 </body>
 </html>
