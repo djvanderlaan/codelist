@@ -275,5 +275,103 @@ cl <- data.frame(
   )
 expect_error(res <- as.codelist(cl))
 
+# Regression test: in earlier version code following failed. De column "label" was first
+# renames to "description"; after that both! columns "label" we renamed to "description" 
+# not just the column that originally was names "label".
+res <- as.codelist(data.frame(code = 1:3, label = letters[1:3], description = LETTERS[1:3]), 
+  label = "description", description = "label")
+expect_equal(sort(names(res)), sort(c("code", "label", "description")))
+expect_equal(res$code, c(1,2,3))
+expect_equal(res$label, c("A", "B", "C"))
+expect_equal(res$description, c("a", "b", "c"))
+
+
+# =============================================================================
+# WIDE CODE LISTS
+
+
+cl <- "code,label_en-UK,label_nl-NL,description_en-UK,description_nl-NL,other
+A,AA,aa,DAA,Daa,1
+B,BB,bb,DBB,Dbb,2
+C,CC,cc,DCC,Dcc,3
+" |> textConnection() |> read.csv(check.names = FALSE)
+
+res <- as.codelist(cl, format = "wide")
+expect_equal(is.data.frame(res), TRUE)
+expect_equal(names(res), c("code", "label", "description", "other", "locale"))
+expect_equal(res$code, c("A", "B", "C", "A", "B", "C"))
+expect_equal(res$label, c("AA", "BB", "CC", "aa", "bb", "cc"))
+expect_equal(res$description, c("DAA", "DBB", "DCC", "Daa", "Dbb", "Dcc"))
+expect_equal(res$other, c(1 ,2, 3, 1, 2, 3))
+expect_equal(res$locale, rep(c("en-UK", "nl-NL"), each = 3))
+
+res <- as.codelist(cl, format = "wide", locales = "en-UK")
+expect_equal(is.data.frame(res), TRUE)
+expect_equal(names(res), c("code", "label", "label_nl-NL", "description", "description_nl-NL", "other", "locale"))
+expect_equal(res$code, c("A", "B", "C"))
+expect_equal(res$label, c("AA", "BB", "CC"))
+expect_equal(res$description, c("DAA", "DBB", "DCC"))
+expect_equal(res$other, c(1 ,2, 3))
+expect_equal(res$locale, rep(c("en-UK"), each = 3))
+
+# Non existing locale
+expect_error(res <- as.codelist(cl, format = "wide", locales = "en-ERR"))
+expect_error(res <- as.codelist(cl, format = "wide", locales = c("en-UK", "en-ERR")))
+
+# Change names of columns
+res <- as.codelist(cl, format = "wide", label = "description", description = "label")
+expect_equal(is.data.frame(res), TRUE)
+expect_equal(sort(names(res)), sort(c("code", "label", "description", "other", "locale")))
+expect_equal(res$code, c("A", "B", "C", "A", "B", "C"))
+expect_equal(res$description, c("AA", "BB", "CC", "aa", "bb", "cc"))
+expect_equal(res$label, c("DAA", "DBB", "DCC", "Daa", "Dbb", "Dcc"))
+expect_equal(res$other, c(1 ,2, 3, 1, 2, 3))
+expect_equal(res$locale, rep(c("en-UK", "nl-NL"), each = 3))
+
+
+# One locale
+cl <- "code,label_en-UK,description_en-UK,other
+A,AA,DAA,1
+B,BB,DBB,2
+C,CC,DCC,3
+" |> textConnection() |> read.csv(check.names = FALSE)
+res <- as.codelist(cl, format = "wide")
+expect_equal(is.data.frame(res), TRUE)
+expect_equal(names(res), c("code", "label", "description", "other", "locale"))
+expect_equal(res$code, c("A", "B", "C"))
+expect_equal(res$label, c("AA", "BB", "CC"))
+expect_equal(res$description, c("DAA", "DBB", "DCC"))
+expect_equal(res$other, c(1 ,2, 3))
+expect_equal(res$locale, rep(c("en-UK"), each = 3))
+
+# Different sep
+cl <- "code,label%en-UK,description%en-UK,other
+A,AA,DAA,1
+B,BB,DBB,2
+C,CC,DCC,3
+" |> textConnection() |> read.csv(check.names = FALSE)
+res <- as.codelist(cl, format = "wide", locale_sep = "%")
+expect_equal(is.data.frame(res), TRUE)
+expect_equal(names(res), c("code", "label", "description", "other", "locale"))
+expect_equal(res$code, c("A", "B", "C"))
+expect_equal(res$label, c("AA", "BB", "CC"))
+expect_equal(res$description, c("DAA", "DBB", "DCC"))
+expect_equal(res$other, c(1 ,2, 3))
+expect_equal(res$locale, rep(c("en-UK"), each = 3))
+
+# Additional columns varying per locale
+cl <- "code,label_en-UK,label_nl-NL,description_en-UK,description_nl-NL,other_nl-NL, other_en-UK
+A,AA,aa,DAA,Daa,1,11
+B,BB,bb,DBB,Dbb,2,22
+C,CC,cc,DCC,Dcc,3,33
+" |> textConnection() |> read.csv(check.names = FALSE)
+res <- as.codelist(cl, format = "wide")
+expect_equal(is.data.frame(res), TRUE)
+expect_equal(names(res), c("code", "label", "description", "other", "locale"))
+expect_equal(res$code, c("A", "B", "C", "A", "B", "C"))
+expect_equal(res$label, c("AA", "BB", "CC", "aa", "bb", "cc"))
+expect_equal(res$description, c("DAA", "DBB", "DCC", "Daa", "Dbb", "Dcc"))
+expect_equal(res$other, c(11 ,22, 33, 1, 2, 3))
+expect_equal(res$locale, rep(c("en-UK", "nl-NL"), each = 3))
 
 
