@@ -285,6 +285,38 @@ expect_equal(res$code, c(1,2,3))
 expect_equal(res$label, c("A", "B", "C"))
 expect_equal(res$description, c("a", "b", "c"))
 
+# Regression test: as.codelist has problems when de code list already has a
+# column code, label etc, while the column with the code and/or label are names
+# differently
+tmp <- data.frame(code = 1:3, label = letters[1:3], description = letters[1:3], 
+  parent = c(NA, 1, 1), locale = "en", missing = c(FALSE, FALSE, TRUE),
+  code2 = 11:13, label2 = LETTERS[1:3], description2 = LETTERS[1:3], 
+  parent2 = c(13, 13, NA), locale2 = "nl", missing2 = c(TRUE, FALSE, FALSE))
+res <- as.codelist(tmp, code = "code2", label = "label2", description = "description2",
+  parent = "parent2", locale = "locale2", missing = "missing2")
+expect_equal(sum(names(res) == "code"), 1)
+expect_equal(sum(names(res) == "label"), 1)
+expect_equal(sum(names(res) == "description"), 1)
+expect_equal(sum(names(res) == "parent"), 1)
+expect_equal(sum(names(res) == "locale"), 1)
+expect_equal(sum(names(res) == "missing"), 1)
+expect_equal(sum(names(res) == "code.orig"), 1)
+expect_equal(sum(names(res) == "label.orig"), 1)
+expect_equal(sum(names(res) == "description.orig"), 1)
+expect_equal(sum(names(res) == "parent.orig"), 1)
+expect_equal(sum(names(res) == "locale.orig"), 1)
+expect_equal(sum(names(res) == "missing.orig"), 1)
+expect_equal(res$code, c(11, 12, 13))
+expect_equal(res$label, LETTERS[1:3])
+expect_equal(res$description, LETTERS[1:3])
+expect_equal(res$parent, c(13, 13, NA))
+expect_equal(res$locale, c("nl", "nl", "nl"))
+expect_equal(res$missing, c(TRUE, FALSE, FALSE))
+
+
+
+
+
 
 # =============================================================================
 # WIDE CODE LISTS
@@ -373,5 +405,10 @@ expect_equal(res$label, c("AA", "BB", "CC", "aa", "bb", "cc"))
 expect_equal(res$description, c("DAA", "DBB", "DCC", "Daa", "Dbb", "Dcc"))
 expect_equal(res$other, c(11 ,22, 33, 1, 2, 3))
 expect_equal(res$locale, rep(c("en-UK", "nl-NL"), each = 3))
+
+
+
+
+
 
 
