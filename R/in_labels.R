@@ -16,7 +16,7 @@
 #' @examples
 #' data(objectcodes)
 #' data(objectsales)
-#' objectsales$product <- coded(objectsales$product, objectcodes)
+#' objectsales$product <- code(objectsales$product, objectcodes)
 #'
 #' in_labels(objectsales$product, c("Electric Drill", "Toys"))
 #'

@@ -1,5 +1,5 @@
 #' @export
-`length<-.coded` <- function(x, value) {
+`length<-.code` <- function(x, value) {
   oldclass <- class(x)
   attr <- attributes(x)
   x <- NextMethod()

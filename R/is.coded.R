@@ -1,12 +1,12 @@
-#' Check if object is a coded
+#' Check if object is a code
 #'
 #' @param x object to check
 #'
 #' @return
 #' Returns a logical of length 1 indicating whether or not \code{X} is of 
-#' type 'coded'.
+#' type 'code'.
 #'
 #' @export
-is.coded <- function(x) {
-  methods::is(x, "coded")
+is.code <- function(x) {
+  methods::is(x, "code")
 }

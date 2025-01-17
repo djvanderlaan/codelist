@@ -1,12 +1,12 @@
 #' Coded vector
 #' 
-#' A coded vector is a vector with an associated code list. The values in the
+#' A code vector is a vector with an associated code list. The values in the
 #' codelist should come from this code list. The values also have an associated
 #' label and optionally additional properties such as a description. See
 #' \code{\link{codelist}} for more information on what should and could be in a
 #' code list. 
 #'
-#' @param x vector to convert to coded vector
+#' @param x vector to convert to code vector
 #' @param codelist codelist to associate with the values in \code{x}
 #' @param ... Ignored; used to pass extra arguments to other methods
 #'
@@ -15,7 +15,7 @@
 #' generated from the factor values. 
 #'
 #' @return
-#' Returns an object of type 'coded'. Except when \code{x} is a factor, \code{x}
+#' Returns an object of type 'code'. Except when \code{x} is a factor, \code{x}
 #' keeps classes and attributes assiated with \code{x}. This object is a copy of
 #' \code{x} with a \code{codelist} attribute added. 
 #'
@@ -24,31 +24,31 @@
 #'
 #' @examples
 #'
-#' x <- coded(c(1,4,2), codelist(codes = 1:4, labels = letters[1:4]))
+#' x <- code(c(1,4,2), codelist(codes = 1:4, labels = letters[1:4]))
 #' print(x)
 #' labels(x)
 #'
-#' x <- coded(factor(letters[1:3]))
+#' x <- code(factor(letters[1:3]))
 #' print(x)
 #' attr(x, "codelist")
 #'
 #' @export
-coded <- function(x, codelist, ...) {
-  UseMethod("coded")
+code <- function(x, codelist, ...) {
+  UseMethod("code")
 }
 
 #' @export
-coded.default <- function(x, codelist = attr(x, "codelist"), ...) {
+code.default <- function(x, codelist = attr(x, "codelist"), ...) {
   if (!is.codelist(codelist)) codelist <- as.codelist(codelist)
   if (!isTRUE(err <- check_against_codelist(x, codelist)))
     stop(err)
   attr(x, "codelist") <- codelist
-  class(x) <- c("coded", attr(x, "class"))
+  class(x) <- c("code", attr(x, "class"))
   x
 }
 
 #' @export
-coded.factor <- function(x, codelist = attr(x, "codelist"), ...) {
+code.factor <- function(x, codelist = attr(x, "codelist"), ...) {
   if (missing(codelist) && is.null(codelist)) {
     codelist <- codelist(codes = seq_len(nlevels(x)), labels = levels(x))
     x <- as.integer(x)
@@ -69,7 +69,7 @@ coded.factor <- function(x, codelist = attr(x, "codelist"), ...) {
     stop(err)
   attr(x, "levels") <- NULL
   attr(x, "codelist") <- codelist
-  class(x) <- "coded"
+  class(x) <- "code"
   x
 }
 

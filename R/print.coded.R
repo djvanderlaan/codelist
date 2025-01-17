@@ -1,8 +1,8 @@
 #' @export
-print.coded <- function(x, ...) {
+print.code <- function(x, ...) {
   xx <- x
   attr(xx, "codelist") <- NULL
-  attr(xx, "class") <- setdiff(class(x), "coded")
+  attr(xx, "class") <- setdiff(class(x), "code")
   print(xx, quote = FALSE, ...)
   codelist <- attr(x, "codelist")
   codelist <- cl_filter(codelist, locale = NA)

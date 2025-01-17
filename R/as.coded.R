@@ -1,32 +1,32 @@
 
 
-#' Convert object to coded
+#' Convert object to code
 #'
 #' @param x object to convert
 #' 
 #' @return
-#' Returns an object of type \code{\link{coded}}.
+#' Returns an object of type \code{\link{code}}.
 #'
 #' @details
 #' By default objects are first converted to factor using
-#' \code{\link{as.factor}} before being converted to coded using
-#' \code{\link{coded}}.
+#' \code{\link{as.factor}} before being converted to code using
+#' \code{\link{code}}.
 #'
-#' @rdname as.coded
+#' @rdname as.code
 #' @export
-as.coded <- function(x) {
-  UseMethod("as.coded")
+as.code <- function(x) {
+  UseMethod("as.code")
 }
 
-#' @rdname as.coded
+#' @rdname as.code
 #' @export
-as.coded.coded <- function(x) {
+as.code.code <- function(x) {
   x
 }
 
-#' @rdname as.coded
+#' @rdname as.code
 #' @export
-as.coded.default <- function(x) {
-  coded(as.factor(x))
+as.code.default <- function(x) {
+  code(as.factor(x))
 }
 

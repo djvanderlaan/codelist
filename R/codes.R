@@ -17,7 +17,7 @@
 #' @return
 #' Returns a vector of codes. Will give an error when one of the labels cannot
 #' be found in the codelist for the given locale. When \code{x} is an object of
-#' type 'coded' the codes themselves are returned stripped from the 'coded'
+#' type 'code' the codes themselves are returned stripped from the 'code'
 #' class and with the 'codelist' attribute removed.
 #'
 #' @seealso
@@ -26,7 +26,7 @@
 #' @examples
 #' data(objectcodes)
 #' data(objectsales)
-#' objectsales$product <- coded(objectsales$product, objectcodes)
+#' objectsales$product <- code(objectsales$product, objectcodes)
 #'
 #' codes(c("Hammer", "Electric Drill"), objectcodes)
 #' codes(c("Hammer", "Electric Drill"), cl(objectsales$product))
@@ -70,9 +70,9 @@ codes.default <- function(x, codelist, locale = cl_locale(codelist), ...) {
 
 #' @rdname codes
 #' @export
-codes.coded <- function(x, ...) {
+codes.code <- function(x, ...) {
   res <- x
-  class(res) <- setdiff(class(res), "coded")
+  class(res) <- setdiff(class(res), "code")
   attr(res, "codelist") <- NULL
   res
 }

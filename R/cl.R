@@ -18,7 +18,7 @@ cl.default <- function(x) {
 
 #' @rdname cl
 #' @export
-cl.coded <- function(x) {
+cl.code <- function(x) {
   as.codelist(attr(x, "codelist"))
 }
 

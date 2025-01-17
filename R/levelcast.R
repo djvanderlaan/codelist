@@ -1,7 +1,7 @@
 #' Recode codes to a higher level in a hierarchy
 #'
 #' @param x vector of codes to record. This can be an object of type
-#' \code{\link{coded}}. 
+#' \code{\link{code}}. 
 #'
 #' @param level level to which to cast the codes.
 #'
@@ -30,7 +30,7 @@
 #'     parent = c(NA, NA, "A", "A", "B", "B", "A1", "B2", NA),
 #'     missing = c(0, 0, 0, 0, 0, 0, 0, 0, 1)
 #'   )
-#' x <- coded(c("A1.1", "A1", "A2", "B2.2", "B2.2", NA, "B2", "X"), cl)
+#' x <- code(c("A1.1", "A1", "A2", "B2.2", "B2.2", NA, "B2", "X"), cl)
 #' levelcast(x, 1)
 #' levelcast(x, 2, over_level = "ignore")
 #' levelcast(x, 0)

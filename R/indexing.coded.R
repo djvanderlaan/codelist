@@ -1,6 +1,6 @@
 
 #' @export
-`[.coded` <- function(x, ...) {
+`[.code` <- function(x, ...) {
   y <- NextMethod(x)
   class(y) <- oldClass(x)
   attr(y, "codelist") <- attr(x, "codelist")
@@ -8,8 +8,8 @@
 }
 
 #' @export
-`[<-.coded` <- function(x, ..., value) {
-  if (is.coded(value)) {
+`[<-.code` <- function(x, ..., value) {
+  if (is.code(value)) {
     if (!isTRUE(all.equal(attr(x, "codelist"), attr(value, "codelist")))) 
       stop("Codelist of value does not match that of the vector assigned to.")
   }
@@ -21,7 +21,7 @@
   } else if (all(is.na(value))) {
     # Do nothing
   } else if (!sameclass(codelist$code, value)) {
-    stop("value not of the same class as the used coded.")
+    stop("value not of the same class as the used code.")
   }
   if (!all(value %in% codelist$code | is.na(value))) 
     stop("Invalid codes used in value.")
@@ -34,7 +34,7 @@
 
 
 #' @export
-`[[.coded` <- function(x, ...) {
+`[[.code` <- function(x, ...) {
   y <- NextMethod(x)
   class(y) <- oldClass(x)
   attr(y, "codelist") <- attr(x, "codelist")
@@ -42,8 +42,8 @@
 }
 
 #' @export
-`[[<-.coded` <- function(x, ..., value) {
-  if (is.coded(value)) {
+`[[<-.code` <- function(x, ..., value) {
+  if (is.code(value)) {
     if (!isTRUE(all.equal(attr(x, "codelist"), attr(value, "codelist")))) 
       stop("Codelist of value does not match that of the vector assigned to.")
   }
@@ -55,7 +55,7 @@
   } else if (all(is.na(value))) {
     # Do nothing
   } else if (!sameclass(codelist$code, value)) {
-    stop("value not of the same class as the used coded.")
+    stop("value not of the same class as the used code.")
   }
   if (!all(value %in% codelist$code | is.na(value))) 
     stop("Invalid codes used in value.")

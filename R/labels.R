@@ -19,8 +19,8 @@
 #' @param ... ignored
 #'
 #' @details
-#' \code{to_labels} calls \code{labels.coded} directly and is meant as a
-#' substitute for \code{labels.coded} for objects that are not of type 'coded'.
+#' \code{to_labels} calls \code{labels.code} directly and is meant as a
+#' substitute for \code{labels.code} for objects that are not of type 'code'.
 #' 
 #' @return 
 #' A factor vector with the same length as \code{x}.
@@ -28,7 +28,7 @@
 #' @examples
 #' data(objectsales)
 #' data(objectcodes)
-#' objectsales$product <- coded(objectsales$product, objectcodes)
+#' objectsales$product <- code(objectsales$product, objectcodes)
 #' 
 #' labels(objectsales$product) |> 
 #'   table(useNA = "ifany")
@@ -39,12 +39,12 @@
 #'
 #' to_labels(c("A", "B"), codelist = objectcodes)
 #' # is the same as 
-#' labels.coded(c("A", "B"), codelist = objectcodes)
+#' labels.code(c("A", "B"), codelist = objectcodes)
 #'
 #' @rdname labels
-#' @export labels.coded
+#' @export labels.code
 #' @exportS3Method base::labels
-labels.coded <- function(object, missing = TRUE, droplevels = FALSE, 
+labels.code <- function(object, missing = TRUE, droplevels = FALSE, 
     codelist = attr(object, "codelist"), locale = cl_locale(codelist), ...) {
   if (missing(codelist) && is.null(codelist)) 
     stop("object has no 'codelist' attribute. codelist has to be specified manually.")
@@ -75,7 +75,7 @@ labels.coded <- function(object, missing = TRUE, droplevels = FALSE,
 #' @export
 to_labels <- function(x, codelist = attr(x, "codelist"), missing = TRUE, 
     droplevels = FALSE, locale = cl_locale(codelist)) {
-  labels.coded(x, missing = missing, droplevels = droplevels, 
+  labels.code(x, missing = missing, droplevels = droplevels, 
     codelist = codelist, locale = locale)
 }
 

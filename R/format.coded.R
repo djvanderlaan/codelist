@@ -1,6 +1,6 @@
-#' Format a coded object for pretty printing
+#' Format a code object for pretty printing
 #'
-#' @param x a \code{\link{coded}} object
+#' @param x a \code{\link{code}} object
 #' @param maxlen maximum length of the label. A length of 0 or lower will
 #' suppress adding the label to the output.
 #' @param ... ignored
@@ -10,12 +10,12 @@
 #' the label will be truncated.
 #'
 #' @return
-#' A character vector with the formatted coded.
+#' A character vector with the formatted code.
 #'
 #' @export
-format.coded <- function(x, maxlen = getOption("CLMAXLEN", 8L), ...) {
+format.code <- function(x, maxlen = getOption("CLMAXLEN", 8L), ...) {
   uncoded <- function(x) {
-    class(x) <- setdiff(class(x), "coded")
+    class(x) <- setdiff(class(x), "code")
     attr(x, "codelist") <- NULL
     x
   }

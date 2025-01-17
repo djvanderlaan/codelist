@@ -61,15 +61,15 @@ it is missing, the looks for a 'codelist' attribute:
 attr(objectsales$product, "codelist") <- objectcodes
 to_labels(objectsales$product) |> head(10)
 ```
-The `codelist` package also has a `coded` type. Converting to a `coded` object
-adds the `coded` class. This will result in some formatting and later on we will
+The `codelist` package also has a `code` type. Converting to a `code` object
+adds the `code` class. This will result in some formatting and later on we will
 see that this also ensures that we cannot assign invalid codes to the vector:
 ```{.R #ex50}
-objectsales$product <- coded(objectsales$product, objectcodes)
+objectsales$product <- code(objectsales$product, objectcodes)
 objectsales$product |> head(10)
 to_labels(objectsales$product) |> head(10)
 ```
-For `coded` objects there is also the `labels` method:
+For `code` objects there is also the `labels` method:
 ```
 labels(objectsales$product) |> head(10)
 ```
@@ -147,7 +147,7 @@ In general the latter is more readable and makes the intent of the code much
 more clear (unless one can assume that the people reading the code will now most
 of the product codes).
 
-When comparing a `coded` object to labels, it is also possible to use the
+When comparing a `code` object to labels, it is also possible to use the
 `as.label` function. This will add the class "label" to the character vector.
 The comparison operator will then first call the `codes` function on the label:
 ```{.R #ex160}
@@ -190,7 +190,7 @@ course also work within `data.tables` and the `filter` methods from `dplyr`.
 
 ### Assignment of codes
 
-When the vector with codes is transformed to a `coded` object, it can of course
+When the vector with codes is transformed to a `code` object, it can of course
 also be assigned to:
 ```{.R #ex220}
 objectsales$product[10] <- "A01"
@@ -253,7 +253,7 @@ an error. This can be controlled with the `over_level` argument.
 
 ### Safety
 
-Using a `coded` vector also has the advantage that the codes assigned to will be
+Using a `code` vector also has the advantage that the codes assigned to will be
 validated against the code list, generating an error when one tries assign an
 invalid code:
 ```{.R #ex250 capture_warnings=TRUE}
@@ -261,7 +261,7 @@ try({
   objectsales$product[10] <- "Q"
 })
 ```
-This makes a `coded` object safer to work with than, for example, a character of
+This makes a `code` object safer to work with than, for example, a character of
 numeric vector with codes (a `factor` vector will also generate a warning for
 invalid factor levels).
 
@@ -277,13 +277,13 @@ Assigning `NA` will of course still work:
 objectsales$product[10] <- NA
 ```
 
-A `coded` object is safer to work with than a factor vector. For example:
+A `code` object is safer to work with than a factor vector. For example:
 ```{.R #ex280}
 x <- factor(letters[1:3])
-y <- coded(1:3, data.frame(code = 1:3, label = letters[1:3]))
+y <- code(1:3, data.frame(code = 1:3, label = letters[1:3]))
 ```
 Comparing on invalid codes works with a factor while it will generate an error
-for `coded` objects:
+for `code` objects:
 ```{.R #ex290}
 try({ x == 4 })
 try({ y == 4 })
@@ -292,7 +292,7 @@ The same holds when comparing on labels:
 ```{.R #ex300}
 try({ x == "foobar" })
 ```
-A `coded` cannot directly be compared on a label and will generate an error even
+A `code` cannot directly be compared on a label and will generate an error even
 when the label is valid:
 ```{.R #ex310}
 try({ y == "a" })

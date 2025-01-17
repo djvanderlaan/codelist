@@ -276,7 +276,7 @@ cl <- data.frame(
 expect_error(res <- as.codelist(cl))
 
 # Regression test: in earlier version code following failed. De column "label" was first
-# renames to "description"; after that both! columns "label" we renamed to "description" 
+# renamed to "description"; after that both! columns "label" we renamed to "description" 
 # not just the column that originally was names "label".
 res <- as.codelist(data.frame(code = 1:3, label = letters[1:3], description = LETTERS[1:3]), 
   label = "description", description = "label")

@@ -5,7 +5,7 @@ codelist <- codelist(
     code = c(10, 11, 12),
     label = c("a", "b", "c")
   )
-x <- coded(c(10, 12, NA), codelist)
+x <- code(c(10, 12, NA), codelist)
 
 expect_equal(x == as.label("a"), c(TRUE, FALSE, NA))
 expect_equal(x == as.label(c("a", "c", NA)), c(TRUE, TRUE, NA))

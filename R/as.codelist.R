@@ -93,29 +93,29 @@ as.codelist.data.frame <- function(x, code = names(x)[1], label = names(x)[2],
   # Make sure the columns have the correct name
   orignames <- names(x)
   if (code %in% orignames) {
-    names(x)[orignames == "code"] <- "code.orig"
+    names(x)[names(x) == "code"] <- "code.orig"
     names(x)[orignames == code] <- "code"
   }
   if (label %in% orignames) {
-    names(x)[orignames == "label"] <- "label.orig"
+    names(x)[names(x) == "label"] <- "label.orig"
     names(x)[orignames == label] <- "label"
   } else {
     x$label <- as.character(x$code)
   }
   if (description %in% orignames) {
-    names(x)[orignames == "description"] <- "description.orig"
+    names(x)[names(x) == "description"] <- "description.orig"
     names(x)[orignames == description] <- "description"
   }
   if (parent %in% orignames) {
-    names(x)[orignames == "parent"] <- "parent.orig"
+    names(x)[names(x) == "parent"] <- "parent.orig"
     names(x)[orignames == parent] <- "parent"
   }
   if (locale %in% orignames) {
-    names(x)[orignames == "locale"] <- "locale.orig"
+    names(x)[names(x) == "locale"] <- "locale.orig"
     names(x)[orignames == locale] <- "locale"
   }
   if (missing %in% orignames) {
-    names(x)[orignames == "missing"] <- "missing.orig"
+    names(x)[names(x) == "missing"] <- "missing.orig"
     names(x)[orignames == missing] <- "missing"
     x$missing <- as.logical(x$missing)
   }

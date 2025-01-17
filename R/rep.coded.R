@@ -1,5 +1,5 @@
 #' @export
-rep.coded <- function(x, ...) {
+rep.code <- function(x, ...) {
   old_class <- class(x)
   attr <- attributes(x)
   res <- NextMethod()

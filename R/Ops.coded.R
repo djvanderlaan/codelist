@@ -1,17 +1,17 @@
 
 #' @export
-Ops.coded <- function(e1, e2) {
+Ops.code <- function(e1, e2) {
   valid_operations <- c("==", "!=")
   if (!(.Generic %in% valid_operations)) {
-    stop("'", .Generic, "' is not meaningful for coded objects.")
+    stop("'", .Generic, "' is not meaningful for code objects.")
   } 
-  # In case e2 is the coded and not e1
-  if (!is.coded(e1)) {
+  # In case e2 is the code and not e1
+  if (!is.code(e1)) {
     tmp <- e2
     e2 <- e1
     e1 <- tmp
   }
-  if (is.coded(e2)) {
+  if (is.code(e2)) {
     if (!isTRUE(all.equal(attr(e1, "codelist"), attr(e2, "codelist")))) 
       stop("Codelist of rhs does not match that of the lhs.")
   }
