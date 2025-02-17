@@ -1,6 +1,7 @@
 #' Get the number of hierarchical levels in a code list
 #' 
-#' @param codelist the codelist for which to determine the number of levels.
+#' @param codelist the \code{\link{codelist}} for which to determine the number
+#' of levels.
 #'
 #' @return
 #' A single integer value (>= 1) with the number of levels.

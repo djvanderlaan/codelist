@@ -1,5 +1,3 @@
-
-
 #' Convert object to code
 #'
 #' @param x object to convert
@@ -10,7 +8,7 @@
 #' @details
 #' By default objects are first converted to factor using
 #' \code{\link{as.factor}} before being converted to code using
-#' \code{\link{code}}.
+#' \code{\link{as.code}}.
 #'
 #' @rdname as.code
 #' @export

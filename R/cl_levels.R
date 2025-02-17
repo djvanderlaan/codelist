@@ -1,6 +1,6 @@
 #' Get the hierarchical level for each code in a code list
 #'
-#' @param codelist the \code{\link{codelist}} for which to determin the levels.
+#' @param codelist the \code{\link{codelist}} for which to determine the levels.
 #' 
 #' @details
 #' Levels are numbered with 0 being the top-most level, which contains code
@@ -8,6 +8,7 @@
 #' level 0. Etc.
 #' 
 #' When the code list does not have a 'parent' column, all codes are in level 0.
+#'
 #' @return
 #' An integer vector with the same length as the number of rows in the code
 #' list.

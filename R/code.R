@@ -1,17 +1,21 @@
-#' Coded vector
+#' Code vector
 #' 
 #' A code vector is a vector with an associated code list. The values in the
-#' codelist should come from this code list. The values also have an associated
+#' vector should come from this code list. The values also have an associated
 #' label and optionally additional properties such as a description. See
 #' \code{\link{codelist}} for more information on what should and could be in a
 #' code list. 
 #'
 #' @param x vector to convert to code vector
-#' @param codelist codelist to associate with the values in \code{x}
+#' 
+#' @param codelist code list to associate with the values in \code{x}. This
+#' should be convertable to \code{\link{codelist}} using
+#' \code{\link{as.codelist}}.
+#'
 #' @param ... Ignored; used to pass extra arguments to other methods
 #'
 #' @details
-#' When \code{codelist} is omitted in case \code{x} is a factor, a code list is
+#' When \code{codelist} is omitted when case \code{x} is a factor, a code list is
 #' generated from the factor values. 
 #'
 #' @return
@@ -19,7 +23,7 @@
 #' keeps classes and attributes assiated with \code{x}. This object is a copy of
 #' \code{x} with a \code{codelist} attribute added. 
 #'
-#' When \code{x} is a factor \code{x} is converted to an integer vector. The
+#' When \code{x} is a factor \code{x} it converted to an integer vector. The
 #' labels are the levels of the factor.
 #'
 #' @examples

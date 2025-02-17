@@ -12,7 +12,7 @@
 #' @param ... used to pass arguments to other methods.
 #'
 #' @details
-#' \code{tocodes} has the same functionality as a call to \code{codes.default}. 
+#' \code{to_codes} has the same functionality as a call to \code{codes.default}. 
 #'
 #' @return
 #' Returns a vector of codes. Will give an error when one of the labels cannot
@@ -79,7 +79,7 @@ codes.code <- function(x, ...) {
 
 #' @rdname codes
 #' @export
-tocodes <- function(x, codelist, locale = cl_locale(codelist)) {
+to_codes <- function(x, codelist, locale = cl_locale(codelist)) {
   codes.default(x, codelist = codelist, locale = locale)
 }
 
