@@ -13,7 +13,7 @@ Description: Functions for working with code lists and vectors with codes. These
     Methods allow for transforming between codes and labels. Also supports
     hierarchical code lists.
 Depends:
-    R (>= 4.0.0)
+    R (>= 4.1.0)
 Imports:
     utils,
     methods
