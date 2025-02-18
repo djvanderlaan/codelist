@@ -8,9 +8,12 @@ Authors@R:
            role = c("aut", "cre"),
            email = "r@eoos.dds.nl",
            comment = c(ORCID = "0000-0002-0693-1514"))
-Description: Functions for working with code lists. 
+Description: Functions for working with code lists and vectors with codes. These
+    are an alternative for factor that keep track of both the codes and labels.
+    Methods allow for transforming between codes and labels. Also supports
+    hierarchical code lists.
 Depends:
-    R (>= 3.6.0)
+    R (>= 4.0.0)
 Imports:
     utils,
     methods
