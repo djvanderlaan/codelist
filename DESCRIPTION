@@ -1,15 +1,17 @@
 Package: codelist
 Type: Package
 Title: Working with Code Lists
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Jan",
            family = "van der Laan",
            role = c("aut", "cre"),
            email = "r@eoos.dds.nl",
            comment = c(ORCID = "0000-0002-0693-1514"))
-Description: Functions for working with code lists and vectors with codes. These
-    are an alternative for factor that keep track of both the codes and labels.
+Description: Make working with code lists easier in R. Defines a 'code' vector, 
+    which is a vector with codes with an associated code list. Codes should be
+    from this code list. A code list consists at minimum of a list of codes
+    with corresponding labels. The 'code' vector is an alternative for factor.
     Methods allow for transforming between codes and labels. Also supports
     hierarchical code lists.
 Depends:
